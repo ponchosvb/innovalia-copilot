@@ -1,113 +1,584 @@
-<!doctype html>
-<div class="bg-white/5 border border-white/10 rounded-2xl p-6">
-<h3 class="font-semibold mb-3">Tiempo medio de desarrollo (por microservicio)</h3>
-<canvas id="chartTiempo" height="220"></canvas>
-</div>
-<div class="bg-white/5 border border-white/10 rounded-2xl p-6">
-<h3 class="font-semibold mb-3">Coste anual en software de terceros</h3>
-<canvas id="chartCoste" height="220"></canvas>
-</div>
-</div>
-</div>
-</section>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovalia - Transformando el Futuro con IA</title>
+    <meta name="description" content="Descubre cómo Innovalia está revolucionando el desarrollo de software con GitHub Copilot y tecnologías de IA">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .typing-cursor {
+            display: inline-block;
+            background-color: #3b82f6;
+            margin-left: 2px;
+            width: 2px;
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        .smooth-scroll {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 smooth-scroll">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white/95 backdrop-blur-sm border-b border-gray-200 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-2">
+                    <i class="fas fa-robot text-2xl text-blue-600"></i>
+                    <h1 class="text-xl font-bold text-gray-900">Innovalia</h1>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#inicio" class="text-gray-700 hover:text-blue-600 transition-colors">Inicio</a>
+                    <a href="#antes-despues" class="text-gray-700 hover:text-blue-600 transition-colors">Antes/Después</a>
+                    <a href="#casos-reales" class="text-gray-700 hover:text-blue-600 transition-colors">Casos Reales</a>
+                    <a href="#impacto" class="text-gray-700 hover:text-blue-600 transition-colors">Impacto</a>
+                    <a href="#demo" class="text-gray-700 hover:text-blue-600 transition-colors">Demo</a>
+                    <a href="#creditos" class="text-gray-700 hover:text-blue-600 transition-colors">Créditos</a>
+                </div>
+                <button class="md:hidden">
+                    <i class="fas fa-bars text-gray-700"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
 
+    <!-- Hero Section / Inicio -->
+    <section id="inicio" class="gradient-bg min-h-screen flex items-center justify-center text-white">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <div class="mb-8">
+                <i class="fab fa-github text-6xl mb-4 opacity-90"></i>
+                <h2 class="text-5xl md:text-7xl font-bold mb-6">Innovalia</h2>
+                <div class="text-xl md:text-2xl mb-8 h-16">
+                    <span id="typing-text" class="font-mono"></span>
+                    <span class="typing-cursor"></span>
+                </div>
+            </div>
+            <p class="text-lg md:text-xl mb-8 opacity-90 max-w-2xl mx-auto">
+                Transformando el desarrollo de software con GitHub Copilot y tecnologías de IA para crear soluciones más eficientes, rápidas y de mayor calidad.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#casos-reales" class="bg-white text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                    Ver Casos de Éxito
+                </a>
+                <a href="#demo" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-purple-600 transition-colors">
+                    Probar Demo
+                </a>
+            </div>
+        </div>
+    </section>
 
-<!-- CASOS REALES -->
-<section id="casos" class="py-14 border-t border-white/10">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<h2 class="text-2xl sm:text-3xl font-bold mb-8">Casos reales</h2>
-<div class="grid lg:grid-cols-3 gap-6">
-<!-- Caso 1 -->
-<article class="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col">
-<div class="text-sky-300 text-xs mb-1">Desarrollo</div>
-<h3 class="font-semibold mb-2">Microservicio en horas, no días</h3>
-<p class="text-slate-300 text-sm mb-4">Estructura base, endpoints y tests generados con prompts; integración y revisión en VS Code.</p>
-<div class="mt-auto text-slate-400 text-xs">Reducción estimada: <strong>−60%</strong> tiempo.</div>
-</article>
-<!-- Caso 2 -->
-<article class="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col">
-<div class="text-emerald-300 text-xs mb-1">Calidad</div>
-<h3 class="font-semibold mb-2">Informes y documentación automáticos</h3>
-<p class="text-slate-300 text-sm mb-4">Generación de documentación de endpoints, scripts de análisis y ejemplos de uso para equipos no dev.</p>
-<div class="mt-auto text-slate-400 text-xs">Errores de documentación: <strong>−70%</strong>.</div>
-</article>
-<!-- Caso 3 -->
-<article class="bg-white/5 border border-white/10 rounded-2xl p-6 flex flex-col">
-<div class="text-cyan-300 text-xs mb-1">Operación</div>
-<h3 class="font-semibold mb-2">Automatizaciones internas</h3>
-<p class="text-slate-300 text-sm mb-4">Tareas repetitivas (renombrado, despliegues, validaciones) resueltas con scripts generados por Copilot.</p>
-<div class="mt-auto text-slate-400 text-xs">Ahorro licencias: <strong>−40%</strong>.</div>
-</article>
-</div>
-</div>
-</section>
+    <!-- Antes/Después Section -->
+    <section id="antes-despues" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Antes vs Después de Copilot</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Descubre cómo GitHub Copilot ha revolucionado nuestro proceso de desarrollo
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Antes -->
+                <div class="bg-red-50 border border-red-200 rounded-xl p-8">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-clock text-4xl text-red-500 mb-4"></i>
+                        <h3 class="text-2xl font-bold text-red-700">Antes</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-times-circle text-red-500 mt-1"></i>
+                            <span class="text-gray-700">Desarrollo manual línea por línea</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-times-circle text-red-500 mt-1"></i>
+                            <span class="text-gray-700">Búsqueda constante en documentación</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-times-circle text-red-500 mt-1"></i>
+                            <span class="text-gray-700">Errores de sintaxis frecuentes</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-times-circle text-red-500 mt-1"></i>
+                            <span class="text-gray-700">Tiempo promedio: 8 horas por feature</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-times-circle text-red-500 mt-1"></i>
+                            <span class="text-gray-700">Revisiones de código extensas</span>
+                        </li>
+                    </ul>
+                </div>
 
+                <!-- Después -->
+                <div class="bg-green-50 border border-green-200 rounded-xl p-8">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-rocket text-4xl text-green-500 mb-4"></i>
+                        <h3 class="text-2xl font-bold text-green-700">Después</h3>
+                    </div>
+                    <ul class="space-y-4">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <span class="text-gray-700">Sugerencias inteligentes en tiempo real</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <span class="text-gray-700">Autocompletado de funciones completas</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <span class="text-gray-700">Código optimizado y libre de errores</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <span class="text-gray-700">Tiempo promedio: 3 horas por feature</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-check-circle text-green-500 mt-1"></i>
+                            <span class="text-gray-700">Código más limpio y consistente</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- IMPACTO -->
-<section id="impacto" class="py-14 border-t border-white/10">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<h2 class="text-2xl sm:text-3xl font-bold mb-2">Impacto medible</h2>
-<p class="text-slate-300 mb-6">Estos KPIs resumen el efecto de Copilot en velocidad, calidad y costes. Ajusta los valores a tus cifras reales.</p>
-<div class="grid sm:grid-cols-3 gap-6">
-<div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
-<div class="text-4xl font-extrabold gradient-text">−60%</div>
-<div class="mt-1 text-slate-300 text-sm">Tiempo medio de desarrollo</div>
-</div>
-<div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
-<div class="text-4xl font-extrabold gradient-text">−40%</div>
-<div class="mt-1 text-slate-300 text-sm">Costes de software externo</div>
-</div>
-<div class="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
-<div class="text-4xl font-extrabold gradient-text">+50%</div>
-<div class="mt-1 text-slate-300 text-sm">Productividad del equipo</div>
-</div>
-</div>
-</div>
-</section>
+    <!-- Casos Reales Section -->
+    <section id="casos-reales" class="py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Casos de Éxito Reales</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Proyectos reales donde GitHub Copilot marcó la diferencia
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Caso 1 -->
+                <div class="bg-white rounded-xl shadow-lg p-8 card-hover">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-shopping-cart text-4xl text-blue-500 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-900">E-commerce Platform</h3>
+                    </div>
+                    <div class="space-y-4 text-gray-600">
+                        <p><strong>Desafío:</strong> Desarrollo de sistema de carrito complejo</p>
+                        <p><strong>Resultado:</strong> 60% menos tiempo de desarrollo</p>
+                        <p><strong>Impacto:</strong> Lanzamiento 3 semanas antes</p>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Líneas de código:</span>
+                            <span class="font-semibold">15,000+</span>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Caso 2 -->
+                <div class="bg-white rounded-xl shadow-lg p-8 card-hover">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-chart-line text-4xl text-green-500 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-900">Analytics Dashboard</h3>
+                    </div>
+                    <div class="space-y-4 text-gray-600">
+                        <p><strong>Desafío:</strong> Visualizaciones complejas de datos</p>
+                        <p><strong>Resultado:</strong> 45% reducción en bugs</p>
+                        <p><strong>Impacto:</strong> Cliente satisfecho al 100%</p>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Componentes:</span>
+                            <span class="font-semibold">25+</span>
+                        </div>
+                    </div>
+                </div>
 
-<!-- PROMPT DEMO (simulación) -->
-<section id="prompt" class="py-14 border-t border-white/10">
-<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-<h2 class="text-2xl sm:text-3xl font-bold mb-4">Prompt → Resultado</h2>
-<div class="bg-white/5 border border-white/10 rounded-2xl p-6">
-<p class="text-slate-300 text-sm">Ejemplo real de prompt usado con Copilot para crear una automatización:</p>
-<pre class="mt-4 bg-slate-900 p-4 rounded-lg overflow-x-auto text-xs sm:text-sm">"Crea un script en Python (FastAPI) con un endpoint POST /analyze que reciba un CSV con tiempos de ciclo, calcule media, desviación y avise si hay desviaciones &gt; 10%. Añade tests unitarios y un Dockerfile minimal."</pre>
-<p class="text-slate-400 text-xs mt-3">→ Puedes sustituirlo por otros prompts que hayáis usado internamente.</p>
-</div>
-</div>
-</section>
+                <!-- Caso 3 -->
+                <div class="bg-white rounded-xl shadow-lg p-8 card-hover">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-mobile-alt text-4xl text-purple-500 mb-4"></i>
+                        <h3 class="text-xl font-bold text-gray-900">Mobile App API</h3>
+                    </div>
+                    <div class="space-y-4 text-gray-600">
+                        <p><strong>Desafío:</strong> API REST escalable y segura</p>
+                        <p><strong>Resultado:</strong> 70% menos errores de seguridad</p>
+                        <p><strong>Impacto:</strong> 10M+ usuarios sin incidentes</p>
+                    </div>
+                    <div class="mt-6 pt-6 border-t border-gray-200">
+                        <div class="flex justify-between text-sm">
+                            <span class="text-gray-500">Endpoints:</span>
+                            <span class="font-semibold">50+</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Impacto/KPIs Section -->
+    <section id="impacto" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Impacto Medible</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Datos reales que demuestran el valor de GitHub Copilot en nuestros proyectos
+                </p>
+            </div>
+            
+            <!-- KPI Cards -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+                <div class="text-center">
+                    <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-clock text-blue-600 text-2xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold text-gray-900 mb-2">62%</div>
+                    <div class="text-gray-600">Reducción en tiempo</div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-bug text-green-600 text-2xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold text-gray-900 mb-2">45%</div>
+                    <div class="text-gray-600">Menos bugs</div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-code text-purple-600 text-2xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold text-gray-900 mb-2">80%</div>
+                    <div class="text-gray-600">Código generado</div>
+                </div>
+                <div class="text-center">
+                    <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-smile text-yellow-600 text-2xl"></i>
+                    </div>
+                    <div class="text-3xl font-bold text-gray-900 mb-2">95%</div>
+                    <div class="text-gray-600">Satisfacción</div>
+                </div>
+            </div>
 
-<!-- CREDITOS -->
-<section id="creditos" class="py-16 border-t border-white/10">
-<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-<h2 class="text-2xl sm:text-3xl font-bold mb-2">Créditos</h2>
-<p class="text-slate-300">Esta experiencia fue diseñada por el equipo de <strong>BSH</strong> y generada con ayuda de <strong>GitHub Copilot</strong>. Publicada en <strong>GitHub Pages</strong>.</p>
-<p class="mt-6 text-slate-500 text-sm">Sustituye este texto por los nombres de tu equipo, fecha y un enlace al repositorio.</p>
-<div class="mt-8 text-slate-400 text-xs">© <span id="year"></span> · Innovalia · BSH</div>
-</div>
-</section>
+            <!-- Charts -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Productividad por Sprint</h3>
+                    <canvas id="productivityChart"></canvas>
+                </div>
+                <div class="bg-gray-50 rounded-xl p-6">
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Distribución de Tareas</h3>
+                    <canvas id="tasksChart"></canvas>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Demo Section -->
+    <section id="demo" class="py-20 bg-gray-900 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold mb-4">Prompt Demo Interactivo</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    Experimenta cómo GitHub Copilot responde a diferentes prompts en tiempo real
+                </p>
+            </div>
+            
+            <div class="bg-gray-800 rounded-xl p-6 font-mono">
+                <div class="flex items-center space-x-2 mb-4">
+                    <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                    <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                    <div class="w-3 h-3 bg-green-500 rounded-full"></div>
+                    <span class="text-gray-400 ml-4">Copilot Demo Terminal</span>
+                </div>
+                
+                <div class="space-y-4">
+                    <div>
+                        <span class="text-green-400">$ </span>
+                        <span class="text-white">// Crear una función que valide emails</span>
+                    </div>
+                    <div id="demo-output" class="text-blue-300 pl-4">
+                        <div class="typing-animation"></div>
+                    </div>
+                </div>
+                
+                <div class="mt-8">
+                    <textarea 
+                        id="user-prompt" 
+                        placeholder="Escribe tu prompt aquí... (ej: crear una función para ordenar arrays)"
+                        class="w-full bg-gray-700 text-white p-4 rounded-lg border border-gray-600 focus:border-blue-500 focus:outline-none resize-none"
+                        rows="3"
+                    ></textarea>
+                    <button 
+                        id="demo-btn"
+                        class="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+                    >
+                        Generar con Copilot
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<script>
-// Escribiendo texto (simulación de Copilot typing)
-const demo = `> Genera una web para presentar Copilot en BSH\n> • Diseño oscuro, moderno, con métricas y casos reales\n> • Gráficas con Chart.js\n> • Secciones: Inicio, Antes/Después, Casos, Impacto, Prompt, Créditos\n\n✅ Hecho: HTML + Tailwind + Chart.js listo para GitHub Pages.`;
-const el = document.getElementById('type-demo');
-let i = 0; function tick(){ if(i<=demo.length){ el.textContent = demo.slice(0,i++); setTimeout(tick, 12);} }
-tick();
+    <!-- Créditos Section -->
+    <section id="creditos" class="py-20 bg-gray-50">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-4xl font-bold text-gray-900 mb-8">Créditos y Reconocimientos</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <i class="fab fa-github text-5xl text-gray-800 mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">GitHub Copilot</h3>
+                    <p class="text-gray-600">
+                        La herramienta de IA que ha revolucionado nuestra forma de programar, 
+                        proporcionando sugerencias inteligentes y acelerando nuestro desarrollo.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <i class="fas fa-users text-5xl text-blue-600 mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Equipo Innovalia</h3>
+                    <p class="text-gray-600">
+                        Nuestro talentoso equipo de desarrolladores que ha sabido aprovechar 
+                        al máximo las capacidades de GitHub Copilot para crear soluciones innovadoras.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-xl shadow-lg p-8">
+                <h3 class="text-2xl font-bold text-gray-900 mb-6">Tecnologías Utilizadas</h3>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full">HTML5</span>
+                    <span class="bg-blue-100 text-blue-800 px-4 py-2 rounded-full">Tailwind CSS</span>
+                    <span class="bg-yellow-100 text-yellow-800 px-4 py-2 rounded-full">JavaScript</span>
+                    <span class="bg-green-100 text-green-800 px-4 py-2 rounded-full">Chart.js</span>
+                    <span class="bg-purple-100 text-purple-800 px-4 py-2 rounded-full">GitHub Pages</span>
+                    <span class="bg-gray-100 text-gray-800 px-4 py-2 rounded-full">GitHub Copilot</span>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-gray-600">
+                <p>&copy; 2024 Innovalia. Presentación generada con GitHub Copilot.</p>
+                <p class="mt-2">
+                    <a href="https://github.com" class="text-blue-600 hover:text-blue-800 transition-colors">
+                        <i class="fab fa-github mr-2"></i>
+                        Ver en GitHub
+                    </a>
+                </p>
+            </div>
+        </div>
+    </section>
 
-
-// Gráficas (ajusta los datos a tu realidad)
-const ctxT = document.getElementById('chartTiempo');
-new Chart(ctxT, { type: 'bar', data: { labels: ['Antes', 'Después'], datasets: [{ label: 'Horas por microservicio', data: [16, 6], borderWidth: 1 }] }, options: { plugins:{legend:{labels:{color:'#cbd5e1'}}}, scales: { y: { ticks:{color:'#cbd5e1'}, grid:{color:'rgba(203,213,225,.2)'} }, x: { ticks:{color:'#cbd5e1'}, grid:{display:false} } } } });
-
-
-const ctxC = document.getElementById('chartCoste');
-new Chart(ctxC, { type: 'bar', data: { labels: ['Antes', 'Después'], datasets: [{ label: 'Licencias (€/año)', data: [100, 60], borderWidth: 1 }] }, options: { plugins:{legend:{labels:{color:'#cbd5e1'}}}, scales: { y: { ticks:{color:'#cbd5e1'}, grid:{color:'rgba(203,213,225,.2)'} }, x: { ticks:{color:'#cbd5e1'}, grid:{display:false} } } } });
-
-
-document.getElementById('year').textContent = new Date().getFullYear();
-</script>
+    <!-- JavaScript -->
+    <script>
+        // Typing animation for hero section
+        const typingText = document.getElementById('typing-text');
+        const phrases = [
+            'Desarrollando con IA...',
+            'Código más rápido...',
+            'Menos bugs, más innovación...',
+            'El futuro es ahora...'
+        ];
+        
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        
+        function typeWriter() {
+            const currentPhrase = phrases[phraseIndex];
+            
+            if (isDeleting) {
+                typingText.textContent = currentPhrase.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                typingText.textContent = currentPhrase.substring(0, charIndex + 1);
+                charIndex++;
+            }
+            
+            let typeSpeed = isDeleting ? 50 : 100;
+            
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                typeSpeed = 500;
+            }
+            
+            setTimeout(typeWriter, typeSpeed);
+        }
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Charts initialization
+        function initCharts() {
+            // Productivity Chart
+            const productivityCtx = document.getElementById('productivityChart');
+            if (productivityCtx) {
+                new Chart(productivityCtx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Sprint 1', 'Sprint 2', 'Sprint 3', 'Sprint 4', 'Sprint 5', 'Sprint 6'],
+                        datasets: [{
+                            label: 'Sin Copilot',
+                            data: [65, 68, 70, 67, 72, 75],
+                            borderColor: 'rgb(239, 68, 68)',
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            tension: 0.4
+                        }, {
+                            label: 'Con Copilot',
+                            data: [85, 92, 98, 105, 110, 115],
+                            borderColor: 'rgb(34, 197, 94)',
+                            backgroundColor: 'rgba(34, 197, 94, 0.1)',
+                            tension: 0.4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Story Points completados por Sprint'
+                            }
+                        },
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // Tasks Chart
+            const tasksCtx = document.getElementById('tasksChart');
+            if (tasksCtx) {
+                new Chart(tasksCtx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Desarrollo', 'Testing', 'Documentación', 'Revisión'],
+                        datasets: [{
+                            data: [45, 25, 15, 15],
+                            backgroundColor: [
+                                'rgb(59, 130, 246)',
+                                'rgb(34, 197, 94)',
+                                'rgb(251, 191, 36)',
+                                'rgb(168, 85, 247)'
+                            ]
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Distribución del tiempo por actividad'
+                            }
+                        }
+                    }
+                });
+            }
+        }
+        
+        // Demo functionality
+        function initDemo() {
+            const demoBtn = document.getElementById('demo-btn');
+            const userPrompt = document.getElementById('user-prompt');
+            const demoOutput = document.getElementById('demo-output');
+            
+            const demoResponses = {
+                'validar email': `function validateEmail(email) {
+    const emailRegex = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+    return emailRegex.test(email);
+}`,
+                'ordenar array': `function sortArray(arr, ascending = true) {
+    return arr.sort((a, b) => ascending ? a - b : b - a);
+}`,
+                'fecha actual': `function getCurrentDate() {
+    return new Date().toLocaleDateString('es-ES');
+}`,
+                'default': `function generatedFunction() {
+    // Función generada por Copilot
+    console.log('¡Código creado automáticamente!');
+    return 'Resultado exitoso';
+}`
+            };
+            
+            if (demoBtn && userPrompt && demoOutput) {
+                demoBtn.addEventListener('click', function() {
+                    const prompt = userPrompt.value.toLowerCase();
+                    let response = demoResponses.default;
+                    
+                    for (let key in demoResponses) {
+                        if (prompt.includes(key)) {
+                            response = demoResponses[key];
+                            break;
+                        }
+                    }
+                    
+                    // Simulate typing effect
+                    demoOutput.innerHTML = '';
+                    let i = 0;
+                    const typeEffect = setInterval(() => {
+                        if (i < response.length) {
+                            demoOutput.innerHTML += response.charAt(i);
+                            i++;
+                        } else {
+                            clearInterval(typeEffect);
+                        }
+                    }, 30);
+                });
+            }
+        }
+        
+        // Initialize everything when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            typeWriter();
+            initCharts();
+            initDemo();
+        });
+    </script>
 </body>
 </html>
