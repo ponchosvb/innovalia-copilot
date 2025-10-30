@@ -100,27 +100,26 @@
             left: 0;
             width: 100%;
             height: 100%;
-            transform: translateX(100%);
-            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            z-index: 1;
             opacity: 0;
+            visibility: hidden;
+            transform: translateX(100%);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 1;
         }
         
         .slide.active {
+            opacity: 1;
+            visibility: visible;
             transform: translateX(0);
             z-index: 2;
-            opacity: 1;
         }
         
-        .slide.prev {
-            transform: translateX(-100%);
-            z-index: 1;
-            opacity: 0.3;
-        }
-        
+        /* Make sure first slide is visible */
         .slide:first-child {
-            transform: translateX(0);
             opacity: 1;
+            visibility: visible;
+            transform: translateX(0);
+            z-index: 2;
         }
         
         /* Navigation dots */
@@ -291,12 +290,17 @@
 
     <!-- Slide Navigation Dots -->
     <div class="slide-nav">
-        <div class="nav-dot active" onclick="goToSlide(0)"></div>
-        <div class="nav-dot" onclick="goToSlide(1)"></div>
-        <div class="nav-dot" onclick="goToSlide(2)"></div>
-        <div class="nav-dot" onclick="goToSlide(3)"></div>
-        <div class="nav-dot" onclick="goToSlide(4)"></div>
-        <div class="nav-dot" onclick="goToSlide(5)"></div>
+        <div class="nav-dot active" onclick="goToSlide(0)" title="Inicio"></div>
+        <div class="nav-dot" onclick="goToSlide(1)" title="Antes/Después"></div>
+        <div class="nav-dot" onclick="goToSlide(2)" title="Casos Reales"></div>
+        <div class="nav-dot" onclick="goToSlide(3)" title="Impacto"></div>
+        <div class="nav-dot" onclick="goToSlide(4)" title="Demo"></div>
+        <div class="nav-dot" onclick="goToSlide(5)" title="Créditos"></div>
+    </div>
+
+    <!-- Debug info (temporal) -->
+    <div id="debug-info" style="position: fixed; top: 100px; right: 30px; z-index: 9999; background: rgba(0,0,0,0.8); color: cyan; padding: 10px; border-radius: 5px; font-size: 12px; font-family: monospace;">
+        Slide actual: <span id="current-slide-debug">0</span>
     </div>
 
     <!-- Slide Container -->
@@ -676,21 +680,47 @@
         function goToSlide(slideIndex) {
             if (slideIndex < 0 || slideIndex >= totalSlides) return;
             
+            console.log(`🚀 Navegando a slide ${slideIndex}`);
+            
             const slides = document.querySelectorAll('.slide');
             const navDots = document.querySelectorAll('.nav-dot');
             
-            // Remove all active and prev classes
-            slides.forEach(slide => {
-                slide.classList.remove('active', 'prev');
+            // Hide all slides
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active');
+                slide.style.opacity = '0';
+                slide.style.visibility = 'hidden';
+                slide.style.transform = 'translateX(100%)';
+                slide.style.zIndex = '1';
             });
+            
+            // Remove active from all nav dots
             navDots.forEach(dot => {
                 dot.classList.remove('active');
             });
             
-            // Set new active slide
+            // Show target slide
+            if (slides[slideIndex]) {
+                slides[slideIndex].classList.add('active');
+                slides[slideIndex].style.opacity = '1';
+                slides[slideIndex].style.visibility = 'visible';
+                slides[slideIndex].style.transform = 'translateX(0)';
+                slides[slideIndex].style.zIndex = '2';
+                console.log(`✅ Slide ${slideIndex} activada`);
+            }
+            
+            // Update nav dot
+            if (navDots[slideIndex]) {
+                navDots[slideIndex].classList.add('active');
+            }
+            
             currentSlide = slideIndex;
-            slides[currentSlide].classList.add('active');
-            navDots[currentSlide].classList.add('active');
+            
+            // Update debug info
+            const debugSpan = document.getElementById('current-slide-debug');
+            if (debugSpan) {
+                debugSpan.textContent = slideIndex;
+            }
             
             // Re-initialize charts if we're on the KPI slide
             if (currentSlide === 3) {
@@ -700,14 +730,25 @@
         
         // Initialize slides on page load
         function initSlides() {
+            console.log('🔄 Inicializando slides...');
             const slides = document.querySelectorAll('.slide');
             const navDots = document.querySelectorAll('.nav-dot');
             
+            console.log(`📊 Encontradas ${slides.length} slides y ${navDots.length} nav dots`);
+            
             // Reset all slides
             slides.forEach((slide, index) => {
-                slide.classList.remove('active', 'prev');
+                slide.classList.remove('active');
+                slide.style.opacity = '0';
+                slide.style.visibility = 'hidden';
+                slide.style.transform = 'translateX(100%)';
+                
                 if (index === 0) {
                     slide.classList.add('active');
+                    slide.style.opacity = '1';
+                    slide.style.visibility = 'visible';
+                    slide.style.transform = 'translateX(0)';
+                    console.log('✅ Primera slide activada');
                 }
             });
             
@@ -720,6 +761,7 @@
             });
             
             currentSlide = 0;
+            console.log('🎯 Slide actual:', currentSlide);
         }
         
         // Keyboard navigation
