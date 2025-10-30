@@ -51,6 +51,31 @@
             51%, 100% { opacity: 0; }
         }
         
+        /* Hero section with custom background */
+        .hero-slide {
+            background-image: url('image/image.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        
+        .hero-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(10, 10, 15, 0.7);
+            z-index: 1;
+        }
+        
+        .hero-slide .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
         /* Futuristic background patterns */
         .cyber-bg {
             background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 50%, #16213e 100%);
@@ -106,7 +131,6 @@
             transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
             z-index: 1;
             overflow-y: auto;
-            padding-top: 80px;
             box-sizing: border-box;
         }
         
@@ -274,28 +298,7 @@
     </style>
 </head>
 <body class="cyber-bg">
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full bg-black/90 backdrop-blur-sm border-b border-cyan-500/30 z-50 neon-glow">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center space-x-2">
-                    <i class="fas fa-robot text-2xl text-cyan-400 neon-text"></i>
-                    <h1 class="text-xl font-bold text-cyan-400 neon-text">Innovalia</h1>
-                </div>
-                <div class="hidden md:flex space-x-8">
-                    <button onclick="goToSlide(0)" class="text-cyan-300 hover:text-cyan-400 transition-colors nav-link">Inicio</button>
-                    <button onclick="goToSlide(1)" class="text-cyan-300 hover:text-cyan-400 transition-colors nav-link">Antes/Después</button>
-                    <button onclick="goToSlide(2)" class="text-cyan-300 hover:text-cyan-400 transition-colors nav-link">Casos Reales</button>
-                    <button onclick="goToSlide(3)" class="text-cyan-300 hover:text-cyan-400 transition-colors nav-link">Impacto</button>
-                    <button onclick="goToSlide(4)" class="text-cyan-300 hover:text-cyan-400 transition-colors nav-link">Demo</button>
-                    <button onclick="goToSlide(5)" class="text-cyan-300 hover:text-cyan-400 transition-colors nav-link">Créditos</button>
-                </div>
-                <button class="md:hidden text-cyan-400">
-                    <i class="fas fa-bars"></i>
-                </button>
-            </div>
-        </div>
-    </nav>
+
 
     <!-- Slide Navigation Dots -->
     <div class="slide-nav">
@@ -308,7 +311,7 @@
     </div>
 
     <!-- Debug info (temporal) -->
-    <div id="debug-info" style="position: fixed; top: 100px; right: 30px; z-index: 9999; background: rgba(0,0,0,0.8); color: cyan; padding: 10px; border-radius: 5px; font-size: 12px; font-family: monospace;">
+    <div id="debug-info" style="position: fixed; top: 30px; right: 30px; z-index: 9999; background: rgba(0,0,0,0.8); color: cyan; padding: 10px; border-radius: 5px; font-size: 12px; font-family: monospace;">
         Slide actual: <span id="current-slide-debug">0</span>
     </div>
 
@@ -318,8 +321,8 @@
         <div class="matrix-bg"></div>
 
         <!-- Slide 1: Hero Section / Inicio -->
-        <section class="slide cyber-bg min-h-screen flex items-center justify-center text-white relative">
-            <div class="max-w-4xl mx-auto px-4 text-center relative z-10">
+        <section class="slide hero-slide min-h-screen flex items-center justify-center text-white relative">
+            <div class="max-w-4xl mx-auto px-4 text-center hero-content">
                 <div class="mb-8">
                     <i class="fab fa-github text-6xl mb-4 text-cyan-400 neon-text"></i>
                     <h2 class="text-5xl md:text-7xl font-bold mb-6 glitch neon-text">Innovalia</h2>
@@ -708,7 +711,6 @@
                     width: 100% !important;
                     height: 100% !important;
                     overflow-y: auto !important;
-                    padding-top: 80px !important;
                     box-sizing: border-box !important;
                 `;
             });
@@ -732,7 +734,6 @@
                     width: 100% !important;
                     height: 100% !important;
                     overflow-y: auto !important;
-                    padding-top: 80px !important;
                     box-sizing: border-box !important;
                     display: block !important;
                 `;
@@ -780,7 +781,6 @@
                     width: 100% !important;
                     height: 100% !important;
                     overflow-y: auto !important;
-                    padding-top: 80px !important;
                     box-sizing: border-box !important;
                 `;
                 
@@ -797,7 +797,6 @@
                         width: 100% !important;
                         height: 100% !important;
                         overflow-y: auto !important;
-                        padding-top: 80px !important;
                         box-sizing: border-box !important;
                         display: block !important;
                     `;
