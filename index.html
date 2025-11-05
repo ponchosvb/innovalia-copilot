@@ -53,7 +53,7 @@
         
         /* Hero section with custom background */
         .hero-slide {
-            background-image: url('image/image.png');
+            background-image: url('image/image.png?v=1731369600');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -67,7 +67,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(10, 10, 15, 0.7);
+            background: rgba(10, 10, 15, 0.1);
             z-index: 1;
         }
         
@@ -155,36 +155,7 @@
             z-index: 2;
         }
         
-        /* Navigation dots */
-        .slide-nav {
-            position: fixed;
-            right: 30px;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 1000;
-        }
-        
-        .nav-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            margin: 15px 0;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-        
-        .nav-dot.active {
-            background: linear-gradient(45deg, #00f5ff, #ff00ff);
-            box-shadow: 0 0 15px rgba(0, 245, 255, 0.6);
-            transform: scale(1.2);
-        }
-        
-        .nav-dot:hover {
-            background: rgba(0, 245, 255, 0.6);
-            transform: scale(1.1);
-        }
+
         
         /* Card hover effects with cyber theme */
         .cyber-card {
@@ -222,13 +193,108 @@
         /* Glitch effect for titles */
         .glitch {
             position: relative;
-            animation: glitch 2s infinite;
+            animation: glitch 1.5s infinite;
+            text-shadow: 
+                2px 2px #ff00ff, 
+                -2px -2px #00ffff,
+                0px 0px 10px currentColor;
+        }
+        
+        .glitch::before,
+        .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .glitch::before {
+            color: #ff00ff;
+            z-index: -1;
+            clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+            animation: glitch-pseudo 2s ease-in-out infinite;
+            animation-delay: -0.5s;
+        }
+        
+        .glitch::after {
+            color: #00ffff;
+            z-index: -2;
+            clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+            animation: glitch-pseudo 2s ease-in-out infinite;
+            animation-delay: -1s;
+        }
+        
+        @keyframes glitch-pseudo {
+            0%, 100% { transform: translateX(0); }
+            10% { transform: translateX(-2px); }
+            20% { transform: translateX(2px); }
+            30% { transform: translateX(-1px); }
+            40% { transform: translateX(1px); }
+            50% { transform: translateX(-3px); }
+            60% { transform: translateX(3px); }
+            70% { transform: translateX(-1px); }
+            80% { transform: translateX(2px); }
+            90% { transform: translateX(-2px); }
         }
         
         @keyframes glitch {
-            0%, 98% { transform: translateX(0); }
-            99% { transform: translateX(2px); }
-            100% { transform: translateX(-2px); }
+            0%, 85% { 
+                transform: translateX(0) scaleX(1) rotateY(0deg);
+                opacity: 1;
+                filter: hue-rotate(0deg) brightness(1);
+            }
+            86% { 
+                transform: translateX(3px) scaleX(1.02) rotateY(0.5deg);
+                opacity: 0.8;
+                filter: hue-rotate(90deg) brightness(1.2);
+            }
+            87% { 
+                transform: translateX(-2px) scaleX(0.98) rotateY(-0.3deg);
+                opacity: 0.6;
+                filter: hue-rotate(-45deg) brightness(0.9);
+            }
+            88% { 
+                transform: translateX(4px) scaleX(1.01) rotateY(0.8deg);
+                opacity: 0.9;
+                filter: hue-rotate(180deg) brightness(1.1);
+            }
+            89% { 
+                transform: translateX(-3px) scaleX(0.99) rotateY(-0.6deg);
+                opacity: 0.4;
+                filter: hue-rotate(270deg) brightness(1.3);
+            }
+            90% { 
+                transform: translateX(2px) scaleX(1.03) rotateY(0.4deg);
+                opacity: 0.7;
+                filter: hue-rotate(120deg) brightness(0.8);
+            }
+            91% { 
+                transform: translateX(-4px) scaleX(0.97) rotateY(-0.7deg);
+                opacity: 0.5;
+                filter: hue-rotate(-90deg) brightness(1.4);
+            }
+            92% { 
+                transform: translateX(1px) scaleX(1.01) rotateY(0.2deg);
+                opacity: 0.9;
+                filter: hue-rotate(45deg) brightness(0.7);
+            }
+            93% { 
+                transform: translateX(-1px) scaleX(0.99) rotateY(-0.1deg);
+                opacity: 0.3;
+                filter: hue-rotate(200deg) brightness(1.5);
+            }
+            95% { 
+                transform: translateX(-5px) scaleX(0.98) rotateY(-0.9deg);
+                opacity: 0.8;
+                filter: hue-rotate(-60deg) brightness(0.8);
+            }
+            96%, 100% { 
+                transform: translateX(0) scaleX(1) rotateY(0deg);
+                opacity: 1;
+                filter: hue-rotate(0deg) brightness(1);
+            }
         }
         
         /* Matrix-like background effect */
@@ -295,20 +361,439 @@
             box-shadow: 0 0 25px rgba(0, 245, 255, 0.5);
             transform: translateY(-2px);
         }
+        
+        /* Interactive Transformation Effects */
+        .transform-btn {
+            background: linear-gradient(45deg, #dc2626, #ef4444);
+            border: 2px solid #fca5a5;
+            color: white;
+            box-shadow: 
+                0 0 20px rgba(220, 38, 38, 0.5),
+                0 0 40px rgba(239, 68, 68, 0.3);
+            animation: red-pulse 2s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .transform-btn.activated {
+            background: linear-gradient(45deg, #0891b2, #06b6d4);
+            border: 2px solid #67e8f9;
+            box-shadow: 
+                0 0 30px rgba(8, 145, 178, 0.7),
+                0 0 60px rgba(6, 182, 212, 0.5);
+            animation: cyan-pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes red-pulse {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 20px rgba(220, 38, 38, 0.5),
+                    0 0 40px rgba(239, 68, 68, 0.3);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 30px rgba(220, 38, 38, 0.8),
+                    0 0 60px rgba(239, 68, 68, 0.6);
+            }
+        }
+        
+        @keyframes cyan-pulse {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 30px rgba(8, 145, 178, 0.7),
+                    0 0 60px rgba(6, 182, 212, 0.5);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 40px rgba(8, 145, 178, 1),
+                    0 0 80px rgba(6, 182, 212, 0.8);
+            }
+        }
+        
+        /* Transformation States */
+        #interactive-slide.transformed {
+            background: radial-gradient(circle at center, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+        }
+        
+        #interactive-slide.transformed #main-title {
+            background: linear-gradient(45deg, #06b6d4, #8b5cf6, #ec4899);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(6, 182, 212, 0.5);
+        }
+        
+        #interactive-slide.transformed #main-subtitle {
+            color: #67e8f9;
+            text-shadow: 0 0 10px rgba(103, 232, 249, 0.3);
+        }
+        
+        /* Glitch effect for transformation moment */
+        .transformation-glitch {
+            animation: transformation-glitch 0.6s ease-in-out;
+        }
+        
+        @keyframes transformation-glitch {
+            0%, 100% { 
+                transform: translateX(0) scale(1); 
+                filter: hue-rotate(0deg) brightness(1); 
+            }
+            15% { 
+                transform: translateX(-8px) scale(1.02); 
+                filter: hue-rotate(90deg) brightness(1.3); 
+            }
+            30% { 
+                transform: translateX(8px) scale(0.98); 
+                filter: hue-rotate(180deg) brightness(0.7); 
+            }
+            45% { 
+                transform: translateX(-5px) scale(1.01); 
+                filter: hue-rotate(270deg) brightness(1.1); 
+            }
+            60% { 
+                transform: translateX(5px) scale(0.99); 
+                filter: hue-rotate(360deg) brightness(0.9); 
+            }
+            75% { 
+                transform: translateX(-3px) scale(1.005); 
+                filter: hue-rotate(45deg) brightness(1.2); 
+            }
+            90% { 
+                transform: translateX(3px) scale(0.995); 
+                filter: hue-rotate(315deg) brightness(0.8); 
+            }
+        }
+        
+        /* Smooth state transitions */
+        #before-state, #after-state {
+            transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        
+        #transformable-content {
+            position: relative;
+            min-height: 600px;
+        }
+        
+        /* Initial state positioning */
+        #before-state {
+            position: relative;
+            z-index: 1;
+        }
+        
+        #after-state {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        /* Case Study Navigation Styles */
+        .case-nav-btn {
+            background: rgba(26, 26, 46, 0.6);
+            border: 1px solid rgba(0, 245, 255, 0.3);
+            color: #9ca3af;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .case-nav-btn:hover {
+            color: #00f5ff;
+            border-color: rgba(0, 245, 255, 0.6);
+            box-shadow: 0 0 15px rgba(0, 245, 255, 0.3);
+        }
+        
+        .case-nav-btn.active {
+            background: linear-gradient(45deg, rgba(0, 245, 255, 0.2), rgba(255, 0, 255, 0.1));
+            border-color: #00f5ff;
+            color: #00f5ff;
+            box-shadow: 0 0 25px rgba(0, 245, 255, 0.4);
+            text-shadow: 0 0 10px rgba(0, 245, 255, 0.8);
+        }
+        
+        .case-nav-btn.active::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 245, 255, 0.2), transparent);
+            animation: sweep 2s ease-in-out infinite;
+        }
+        
+        @keyframes sweep {
+            0% { left: -100%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+        
+        /* Case Study Content Styles */
+        .case-study {
+            opacity: 0;
+            visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            transform: translateY(20px) scale(0.95);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            pointer-events: none;
+        }
+        
+        .case-study.active {
+            opacity: 1;
+            visibility: visible;
+            position: relative;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+            z-index: 10;
+        }
+        
+        /* Enhanced case study animations */
+        .case-study.entering {
+            animation: caseEnter 0.6s ease-out forwards;
+        }
+        
+        .case-study.leaving {
+            animation: caseLeave 0.4s ease-in forwards;
+        }
+        
+        @keyframes caseEnter {
+            0% { 
+                opacity: 0; 
+                transform: translateY(30px) scale(0.9) rotateX(-5deg); 
+                filter: blur(5px);
+            }
+            100% { 
+                opacity: 1; 
+                transform: translateY(0) scale(1) rotateX(0deg); 
+                filter: blur(0px);
+            }
+        }
+        
+        @keyframes caseLeave {
+            0% { 
+                opacity: 1; 
+                transform: translateY(0) scale(1) rotateX(0deg); 
+                filter: blur(0px);
+            }
+            100% { 
+                opacity: 0; 
+                transform: translateY(-20px) scale(0.95) rotateX(3deg); 
+                filter: blur(3px);
+            }
+        }
+        
+        /* Auto-scale system for responsive content */
+        html, body {
+            height: 100vh;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .slide-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: auto;
+            min-height: 100vh;
+            transform-origin: center center;
+            transition: transform 0.3s ease;
+        }
+        
+        /* Auto-scaling applied via JavaScript */
+        .slide.auto-scaled {
+            transform-origin: center center;
+        }
+        
+        /* Video Modal Styles */
+        .video-modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            animation: modalFadeIn 0.3s ease;
+        }
+        
+        .video-modal-content {
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a1a2e 100%);
+            margin: 5% auto;
+            padding: 30px;
+            border: 2px solid #00f5ff;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+            box-shadow: 
+                0 0 50px rgba(0, 245, 255, 0.3),
+                inset 0 0 50px rgba(0, 245, 255, 0.1);
+        }
+        
+        .video-modal-close {
+            color: #00f5ff;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            line-height: 1;
+            transition: all 0.3s ease;
+        }
+        
+        .video-modal-close:hover,
+        .video-modal-close:focus {
+            color: #ff00ff;
+            text-shadow: 0 0 10px #ff00ff;
+            transform: scale(1.2);
+        }
+        
+        .clickable-panel {
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .clickable-panel::after {
+            content: '🎬';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 245, 255, 0.2);
+            border: 1px solid rgba(0, 245, 255, 0.5);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            opacity: 0.7;
+            transition: all 0.3s ease;
+        }
+        
+        .clickable-panel:hover::after {
+            opacity: 1;
+            background: rgba(0, 245, 255, 0.4);
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(0, 245, 255, 0.5);
+        }
+        
+        .clickable-panel:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px rgba(0, 245, 255, 0.3);
+        }
+        
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Video Player Styles */
+        .video-modal video {
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .video-modal video:hover {
+            box-shadow: 0 8px 30px rgba(0, 245, 255, 0.2);
+        }
+        
+        /* Custom video controls styling */
+        .video-modal video::-webkit-media-controls-panel {
+            background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.8));
+        }
+        
+        .video-modal video::-webkit-media-controls-play-button,
+        .video-modal video::-webkit-media-controls-volume-slider {
+            filter: hue-rotate(180deg) saturate(2);
+        }
+        
+        /* Video fallback message styling */
+        .video-fallback {
+            background: rgba(0, 0, 0, 0.5);
+            border: 2px dashed rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        /* Speed control buttons */
+        .speed-btn {
+            padding: 4px 8px;
+            margin: 2px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            background: rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        
+        .speed-btn.red {
+            border-color: rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+        }
+        
+        .speed-btn.red:hover {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: #ef4444;
+            transform: scale(1.05);
+        }
+        
+        .speed-btn.red.active {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: #ef4444;
+            color: #ffffff;
+            box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+        }
+        
+        .speed-btn.cyan {
+            border-color: rgba(6, 182, 212, 0.3);
+            color: #06b6d4;
+        }
+        
+        .speed-btn.cyan:hover {
+            background: rgba(6, 182, 212, 0.1);
+            border-color: #06b6d4;
+            transform: scale(1.05);
+        }
+        
+        .speed-btn.cyan.active {
+            background: rgba(6, 182, 212, 0.2);
+            border-color: #06b6d4;
+            color: #ffffff;
+            box-shadow: 0 0 10px rgba(6, 182, 212, 0.3);
+        }
     </style>
 </head>
 <body class="cyber-bg">
 
 
-    <!-- Slide Navigation Dots -->
-    <div class="slide-nav">
-        <div class="nav-dot active" onclick="goToSlide(0)" title="Inicio"></div>
-        <div class="nav-dot" onclick="goToSlide(1)" title="Antes/Después"></div>
-        <div class="nav-dot" onclick="goToSlide(2)" title="Casos Reales"></div>
-        <div class="nav-dot" onclick="goToSlide(3)" title="Impacto"></div>
-        <div class="nav-dot" onclick="goToSlide(4)" title="Demo"></div>
-        <div class="nav-dot" onclick="goToSlide(5)" title="Créditos"></div>
-    </div>
+
 
     <!-- Debug info (temporal) -->
     <div id="debug-info" style="position: fixed; top: 30px; right: 30px; z-index: 9999; background: rgba(0,0,0,0.8); color: cyan; padding: 10px; border-radius: 5px; font-size: 12px; font-family: monospace;">
@@ -320,19 +805,22 @@
         <!-- Matrix background effect -->
         <div class="matrix-bg"></div>
 
-        <!-- Slide 1: Hero Section / Inicio -->
+        <!-- Slide 0: Hero Section / Inicio -->
         <section class="slide hero-slide min-h-screen flex text-white relative">
-            <div class="w-1/3 ml-16 hero-content self-center">
+            <div class="w-1/3 ml-16 hero-content self-center" style="margin-top: 15%; margin-left: 200px;">
                 <div class="mb-8">
                     <i class="fab fa-github text-6xl mb-4 text-cyan-400 neon-text"></i>
-                    <h2 class="text-4xl md:text-6xl font-bold mb-6 glitch neon-text">Innovalia</h2>
+                    <h2 class="text-4xl md:text-6xl font-bold mb-4 glitch neon-text" data-text="Innovalia">Innovalia</h2>
+                    <h3 class="text-2xl md:text-3xl font-semibold mb-6 text-cyan-300 neon-text">
+                        AI: Una nueva forma de trabajar eficiente y real.
+                    </h3>
                     <div class="text-lg md:text-xl mb-8 h-12">
                         <span id="typing-text" class="font-mono text-cyan-300"></span>
                         <span class="typing-cursor"></span>
                     </div>
                 </div>
                 <p class="text-base md:text-lg mb-8 opacity-90 text-gray-300 leading-relaxed">
-                    Transformando el desarrollo de software con GitHub Copilot y tecnologías de IA para crear soluciones más eficientes, rápidas y de mayor calidad.
+                    Transformando el desarrollo de software con IA para crear soluciones más eficientes, rápidas y de mayor calidad.
                 </p>
                 <div class="flex flex-col gap-4">
                     <button onclick="goToSlide(2)" class="cyber-btn px-6 py-3 rounded-lg font-semibold transition-all pulse-btn text-sm">
@@ -345,254 +833,461 @@
             </div>
         </section>
 
-        <!-- Slide 2: Antes/Después Section -->
-        <section class="slide cyber-bg min-h-screen flex items-center py-20 relative">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <!-- Slide 1: Transformación Interactiva -->
+        <section class="slide cyber-bg min-h-screen flex items-center justify-center py-10 relative" id="interactive-slide">
+            <div class="max-w-6xl mx-auto px-8 relative z-10">
+                <!-- Título dinámico -->
                 <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-cyan-400 mb-4 neon-text glitch">Antes vs Después de Copilot</h2>
-                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                        Descubre cómo GitHub Copilot ha revolucionado nuestro proceso de desarrollo
+                    <h2 class="text-5xl md:text-7xl font-bold mb-6 transition-all duration-1000" id="main-title" style="color: #ffffff; margin-top: 120px; ">
+                        Desarrollo antes de Copilot
+                    </h2>
+                    <p class="text-xl md:text-2xl max-w-4xl mx-auto transition-all duration-1000" id="main-subtitle" style="color: #cccccc;">
+                        Cuando desarrollar software era un proceso lento y tedioso.
                     </p>
                 </div>
                 
-                <div class="grid md:grid-cols-2 gap-8">
-                    <!-- Antes -->
-                    <div class="cyber-card rounded-xl p-8 neon-border bg-red-900/20">
-                        <div class="text-center mb-6">
-                            <i class="fas fa-clock text-4xl text-red-400 mb-4"></i>
-                            <h3 class="text-2xl font-bold text-red-400">Antes</h3>
-                        </div>
-                        <ul class="space-y-4">
-                            <li class="flex items-start space-x-3">
-                                <i class="fas fa-times-circle text-red-400 mt-1"></i>
-                                <span class="text-gray-300">Desarrollo manual línea por línea</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <i class="fas fa-times-circle text-red-400 mt-1"></i>
-                                <span class="text-gray-300">Búsqueda constante en documentación</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <i class="fas fa-times-circle text-red-400 mt-1"></i>
-                                <span class="text-gray-300">Errores de sintaxis frecuentes</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <i class="fas fa-times-circle text-red-400 mt-1"></i>
-                                <span class="text-gray-300">Tiempo promedio: 8 horas por feature</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <i class="fas fa-times-circle text-red-400 mt-1"></i>
-                                <span class="text-gray-300">Revisiones de código extensas</span>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <!-- Después -->
-                    <div class="cyber-card rounded-xl p-8 neon-border bg-green-900/20">
-                        <div class="text-center mb-6">
-                            <i class="fas fa-rocket text-4xl text-green-400 mb-4"></i>
-                            <h3 class="text-2xl font-bold text-green-400">Después</h3>
-                        </div>
-                        <ul class="space-y-4">
-                            <li class="flex items-start space-x-3">
-                                <i class="fas fa-check-circle text-green-400 mt-1"></i>
-                                <span class="text-gray-300">Sugerencias inteligentes en tiempo real</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <i class="fas fa-check-circle text-green-400 mt-1"></i>
-                                <span class="text-gray-300">Autocompletado de funciones completas</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <i class="fas fa-check-circle text-green-400 mt-1"></i>
-                                <span class="text-gray-300">Código optimizado y libre de errores</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <i class="fas fa-check-circle text-green-400 mt-1"></i>
-                                <span class="text-gray-300">Tiempo promedio: 3 horas por feature</span>
-                            </li>
-                            <li class="flex items-start space-x-3">
-                                <i class="fas fa-check-circle text-green-400 mt-1"></i>
-                                <span class="text-gray-300">Código más limpio y consistente</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 3: Casos Reales Section -->
-        <section class="slide cyber-bg min-h-screen flex items-center py-20 relative">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-cyan-400 mb-4 neon-text glitch">Casos de Éxito Reales</h2>
-                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                        Proyectos reales donde GitHub Copilot marcó la diferencia
-                    </p>
-                </div>
-                
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Caso 1 -->
-                    <div class="cyber-card rounded-xl p-8 neon-border">
-                        <div class="text-center mb-6">
-                            <i class="fas fa-shopping-cart text-4xl text-blue-400 mb-4"></i>
-                            <h3 class="text-xl font-bold text-cyan-400">E-commerce Platform</h3>
-                        </div>
-                        <div class="space-y-4 text-gray-300">
-                            <p><strong class="text-cyan-300">Desafío:</strong> Desarrollo de sistema de carrito complejo</p>
-                            <p><strong class="text-cyan-300">Resultado:</strong> 60% menos tiempo de desarrollo</p>
-                            <p><strong class="text-cyan-300">Impacto:</strong> Lanzamiento 3 semanas antes</p>
-                        </div>
-                        <div class="mt-6 pt-6 border-t border-cyan-500/30">
-                            <div class="flex justify-between text-sm">
-                                <span class="text-gray-400">Líneas de código:</span>
-                                <span class="font-semibold text-cyan-400">15,000+</span>
+                <!-- Contenido transformable centrado -->
+                <div class="transition-all duration-1000" id="transformable-content">
+                    <!-- Estado ANTES (inicial) -->
+                    <div class="text-center" id="before-state">
+                        <div class="bg-red-900/20 border border-red-500/30 rounded-2xl p-12 max-w-4xl mx-auto mb-12">
+                            <div class="mb-8">
+                                <i class="fas fa-exclamation-triangle text-6xl text-red-400 mb-6 transition-all duration-1000"></i>
+                                <h3 class="text-4xl font-bold text-red-400 mb-6 transition-all duration-1000">Desarrollo Tradicional</h3>
+                                <p class="text-xl text-gray-300 mb-8">Procesos lentos, repetitivos y propensos a errores</p>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Caso 2 -->
-                    <div class="cyber-card rounded-xl p-8 neon-border">
-                        <div class="text-center mb-6">
-                            <i class="fas fa-chart-line text-4xl text-green-400 mb-4"></i>
-                            <h3 class="text-xl font-bold text-cyan-400">Analytics Dashboard</h3>
-                        </div>
-                        <div class="space-y-4 text-gray-300">
-                            <p><strong class="text-cyan-300">Desafío:</strong> Visualizaciones complejas de datos</p>
-                            <p><strong class="text-cyan-300">Resultado:</strong> 45% reducción en bugs</p>
-                            <p><strong class="text-cyan-300">Impacto:</strong> Cliente satisfecho al 100%</p>
-                        </div>
-                        <div class="mt-6 pt-6 border-t border-cyan-500/30">
-                            <div class="flex justify-between text-sm">
-                                <span class="text-gray-400">Componentes:</span>
-                                <span class="font-semibold text-cyan-400">25+</span>
+                            
+                            <div class="grid md:grid-cols-2 gap-6 text-left">
+                                <div class="space-y-4">
+                                    <div class="flex items-start space-x-3">
+                                        <i class="fas fa-times-circle text-red-400 mt-1"></i>
+                                        <span class="text-gray-300">Desarrollo manual línea por línea</span>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <i class="fas fa-times-circle text-red-400 mt-1"></i>
+                                        <span class="text-gray-300">Búsqueda constante de información</span>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <i class="fas fa-times-circle text-red-400 mt-1"></i>
+                                        <span class="text-gray-300">Errores de sintaxis frecuentes</span>
+                                    </div>
+                                </div>
+                                <div class="space-y-4">
+                                    <div class="flex items-start space-x-3">
+                                        <i class="fas fa-times-circle text-red-400 mt-1"></i>
+                                        <span class="text-gray-300">Meses por desarrollo</span>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <i class="fas fa-times-circle text-red-400 mt-1"></i>
+                                        <span class="text-gray-300">Revisiones de código extensas</span>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <i class="fas fa-times-circle text-red-400 mt-1"></i>
+                                        <span class="text-gray-300">Documentación incompleta</span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <!-- Caso 3 -->
-                    <div class="cyber-card rounded-xl p-8 neon-border">
-                        <div class="text-center mb-6">
-                            <i class="fas fa-mobile-alt text-4xl text-purple-400 mb-4"></i>
-                            <h3 class="text-xl font-bold text-cyan-400">Mobile App API</h3>
-                        </div>
-                        <div class="space-y-4 text-gray-300">
-                            <p><strong class="text-cyan-300">Desafío:</strong> API REST escalable y segura</p>
-                            <p><strong class="text-cyan-300">Resultado:</strong> 70% menos errores de seguridad</p>
-                            <p><strong class="text-cyan-300">Impacto:</strong> 10M+ usuarios sin incidentes</p>
-                        </div>
-                        <div class="mt-6 pt-6 border-t border-cyan-500/30">
-                            <div class="flex justify-between text-sm">
-                                <span class="text-gray-400">Endpoints:</span>
-                                <span class="font-semibold text-cyan-400">50+</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 4: Impacto/KPIs Section -->
-        <section class="slide cyber-bg min-h-screen flex items-center py-20 relative">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold text-cyan-400 mb-4 neon-text glitch">Impacto Medible</h2>
-                    <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                        Datos reales que demuestran el valor de GitHub Copilot en nuestros proyectos
-                    </p>
-                </div>
-                
-                <!-- KPI Cards -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-                    <div class="text-center">
-                        <div class="cyber-card w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 neon-border">
-                            <i class="fas fa-clock text-cyan-400 text-2xl"></i>
-                        </div>
-                        <div class="text-3xl font-bold text-cyan-400 mb-2 neon-text">62%</div>
-                        <div class="text-gray-300">Reducción en tiempo</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="cyber-card w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 neon-border">
-                            <i class="fas fa-bug text-green-400 text-2xl"></i>
-                        </div>
-                        <div class="text-3xl font-bold text-green-400 mb-2 neon-text">45%</div>
-                        <div class="text-gray-300">Menos bugs</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="cyber-card w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 neon-border">
-                            <i class="fas fa-code text-purple-400 text-2xl"></i>
-                        </div>
-                        <div class="text-3xl font-bold text-purple-400 mb-2 neon-text">80%</div>
-                        <div class="text-gray-300">Código generado</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="cyber-card w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 neon-border">
-                            <i class="fas fa-smile text-yellow-400 text-2xl"></i>
-                        </div>
-                        <div class="text-3xl font-bold text-yellow-400 mb-2 neon-text">95%</div>
-                        <div class="text-gray-300">Satisfacción</div>
-                    </div>
-                </div>
-
-                <!-- Charts -->
-                <div class="grid md:grid-cols-2 gap-8">
-                    <div class="cyber-card rounded-xl p-6 neon-border">
-                        <h3 class="text-xl font-bold text-cyan-400 mb-4">Productividad por Sprint</h3>
-                        <canvas id="productivityChart"></canvas>
-                    </div>
-                    <div class="cyber-card rounded-xl p-6 neon-border">
-                        <h3 class="text-xl font-bold text-cyan-400 mb-4">Distribución de Tareas</h3>
-                        <canvas id="tasksChart"></canvas>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Slide 5: Demo Section -->
-        <section class="slide cyber-bg min-h-screen flex items-center py-20 relative">
-            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-                <div class="text-center mb-16">
-                    <h2 class="text-4xl font-bold mb-4 text-cyan-400 neon-text glitch">Prompt Demo Interactivo</h2>
-                    <p class="text-xl text-gray-300 max-w-2xl mx-auto">
-                        Experimenta cómo GitHub Copilot responde a diferentes prompts en tiempo real
-                    </p>
-                </div>
-                
-                <div class="cyber-card rounded-xl p-6 font-mono neon-border">
-                    <div class="flex items-center space-x-2 mb-4">
-                        <div class="w-3 h-3 bg-red-500 rounded-full neon-glow"></div>
-                        <div class="w-3 h-3 bg-yellow-500 rounded-full neon-glow"></div>
-                        <div class="w-3 h-3 bg-green-500 rounded-full neon-glow"></div>
-                        <span class="text-gray-400 ml-4">Copilot Demo Terminal</span>
-                    </div>
-                    
-                    <div class="space-y-4">
-                        <div>
-                            <span class="text-green-400">$ </span>
-                            <span class="text-white">// Crear una función que valide emails</span>
-                        </div>
-                        <div id="demo-output" class="text-cyan-300 pl-4">
-                            <div class="typing-animation"></div>
                         </div>
                     </div>
                     
-                    <div class="mt-8">
-                        <textarea 
-                            id="user-prompt" 
-                            placeholder="Escribe tu prompt aquí... (ej: crear una función para ordenar arrays)"
-                            class="w-full bg-gray-900/80 text-white p-4 rounded-lg border border-cyan-500/30 focus:border-cyan-400 focus:outline-none resize-none neon-border"
-                            rows="3"
-                        ></textarea>
-                        <button 
-                            id="demo-btn"
-                            class="mt-4 cyber-btn px-6 py-3 rounded-lg font-semibold transition-all pulse-btn"
-                        >
-                            Generar con Copilot
+                    <!-- Estado DESPUÉS (oculto inicialmente) -->
+                    <div class="text-center opacity-0 transition-all duration-1000 transform scale-95" id="after-state">
+                        <div class="bg-cyan-900/20 border border-cyan-500/30 rounded-2xl p-12 max-w-4xl mx-auto mb-12 neon-border">
+                            <div class="mb-8">
+                                <i class="fab fa-github text-6xl text-cyan-400 mb-6 neon-text transition-all duration-1000"></i>
+                                <h3 class="text-4xl font-bold text-cyan-400 mb-6 neon-text glitch transition-all duration-1000" data-text="Desarrollo con Copilot">Desarrollo con Copilot</h3>
+                                <p class="text-xl text-cyan-300 mb-8">Productividad aumentada, calidad superior, desarrollo inteligente</p>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-2 gap-6 text-left">
+                                <div class="space-y-4">
+                                    <div class="flex items-start space-x-3">
+                                        <i class="fas fa-check-circle text-cyan-400 mt-1"></i>
+                                        <span class="text-gray-300">Generación automática de código</span>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <i class="fas fa-check-circle text-cyan-400 mt-1"></i>
+                                        <span class="text-gray-300">Sugerencias inteligentes en tiempo real</span>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <i class="fas fa-check-circle text-cyan-400 mt-1"></i>
+                                        <span class="text-gray-300">Debugging automático</span>
+                                    </div>
+                                </div>
+                                <div class="space-y-4">
+                                    <div class="flex items-start space-x-3">
+                                        <i class="fas fa-check-circle text-cyan-400 mt-1"></i>
+                                        <span class="text-gray-300">Días por desarrollo</span>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <i class="fas fa-check-circle text-cyan-400 mt-1"></i>
+                                        <span class="text-gray-300">Código más limpio y consistente</span>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <i class="fas fa-check-circle text-cyan-400 mt-1"></i>
+                                        <span class="text-gray-300">Documentación auto-generada</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Botón transformador -->
+                <div class="text-center relative" style="margin-top: -100px;">
+                    <button onclick="toggleCopilotTransformation()" class="transform-btn px-12 py-6 text-2xl font-bold rounded-lg transition-all duration-500 hover:scale-110 transform" id="transform-button">
+                        <i class="fas fa-magic mr-4"></i>
+                        <span id="button-text">ACTIVAR COPILOT</span>
+                        <i class="fas fa-magic ml-4"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 2: Casos Reales Section -->
+        <section class="slide cyber-bg min-h-screen flex items-center py-20 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-16">
+                    <h2 class="text-4xl font-bold text-cyan-400 mb-4 neon-text glitch" data-text="Casos de Éxito Reales">Casos de Éxito Reales</h2>
+                    <p class="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
+                        Proyectos reales donde Copilot marcó la diferencia
+                    </p>
+                    
+                    <!-- Case Study Navigation Buttons -->
+                    <div class="flex justify-center space-x-1 mb-8">
+                        <button onclick="showCase(0)" class="case-nav-btn active px-6 py-3 rounded-lg font-semibold transition-all cyber-btn">
+                            <i class="fas fa-microchip mr-2"></i>
+                            Firmware ECUs
+                        </button>
+                        <button onclick="showCase(1)" class="case-nav-btn px-6 py-3 rounded-lg font-semibold transition-all cyber-btn">
+                            <i class="fas fa-video mr-2"></i>
+                            Analisis de suciedad
+                        </button>
+                        <button onclick="showCase(2)" class="case-nav-btn px-6 py-3 rounded-lg font-semibold transition-all cyber-btn">
+                            <i class="fas fa-laptop-code mr-2"></i>
+                            Esta WEB!
                         </button>
                     </div>
                 </div>
+                
+                <!-- Case Studies Container -->
+                <div class="max-w-4xl mx-auto relative">
+                    <!-- Caso 1: Firmware ECUs -->
+                    <div class="case-study active" id="case-0">
+                        <div class="cyber-card rounded-xl p-8 neon-border text-center">
+                            <div class="mb-6">
+                                <i class="fas fa-microchip text-6xl text-blue-400 mb-4 neon-text"></i>
+                                <h3 class="text-2xl font-bold text-cyan-400 mb-4">Software de Actualización de Firmware Electrónicas</h3>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-3 gap-6 mb-8 text-left">
+                                <div class="space-y-3">
+                                    <h4 class="text-lg font-semibold text-cyan-300">🎯 Desafío</h4>
+                                    <p class="text-gray-300">Desarrollo de sistema de actualización de firmware de ECUs para solucionar reprocesos masivos</p>
+                                </div>
+                                <div class="space-y-3">
+                                    <h4 class="text-lg font-semibold text-green-300">⚡ Resultado</h4>
+                                    <p class="text-gray-300">Desarrollo completado en <strong class="text-green-400">1 día</strong> usando GitHub Copilot</p>
+                                </div>
+                                <div class="space-y-3">
+                                    <h4 class="text-lg font-semibold text-purple-300">🚀 Impacto</h4>
+                                    <p class="text-gray-300">Solución exitosa para <strong class="text-purple-400">4,500 electrónicas</strong></p>
+                                </div>
+                            </div>
+                            
+                            <!-- Detailed Technical Metrics -->
+                            <div class="bg-cyan-900/10 border border-cyan-500/20 rounded-lg p-6">
+                                <h4 class="text-lg font-bold text-cyan-400 mb-4">📊 Métricas Técnicas del Proyecto</h4>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-cyan-400 mb-1">1,048</div>
+                                        <div class="text-gray-400">Líneas de código</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-blue-400 mb-1">85</div>
+                                        <div class="text-gray-400">Archivos Python</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-green-400 mb-1">41</div>
+                                        <div class="text-gray-400">Configuraciones</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-purple-400 mb-1">36</div>
+                                        <div class="text-gray-400">Ejecutables/DLLs</div>
+                                    </div>
+                                </div>
+                                <div class="mt-4 pt-4 border-t border-cyan-500/20">
+                                    <div class="grid grid-cols-2 gap-4 text-sm">
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-400">Módulos internos:</span>
+                                            <span class="font-semibold text-cyan-400">10</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-400">Librerías externas:</span>
+                                            <span class="font-semibold text-cyan-400">5</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Caso 2: Analisis de suciedad -->
+                    <div class="case-study" id="case-1">
+                        <div class="cyber-card rounded-xl p-8 neon-border text-center">
+                            <div class="mb-6">
+                                <i class="fas fa-video mr-2 text-6xl text-green-400 mb-4 neon-text"></i>
+                                <h3 class="text-2xl font-bold text-cyan-400 mb-4">Analisis de suciedad</h3>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-3 gap-6 mb-8 text-left">
+                                <div class="space-y-3">
+                                    <h4 class="text-lg font-semibold text-cyan-300">🎯 Desafío</h4>
+                                    <p class="text-gray-300">Comparar imagenes de parrillas nuevas, sucias y limpiadas</p>
+                                </div>
+                                <div class="space-y-3">
+                                    <h4 class="text-lg font-semibold text-green-300">⚡ Resultado</h4>
+                                    <p class="text-gray-300">Desarrollo en <strong class="text-green-400">50 minutos mientras explicabamos copilot</strong> al equipo de laboratorio de Santander </p>
+                                </div>
+                                <div class="space-y-3">
+                                    <h4 class="text-lg font-semibold text-purple-300">🚀 Impacto</h4>
+                                    <p class="text-gray-300">Diseñar una solucion <strong class="text-purple-400">sin coste en tiempo ni proveedores</strong> exportable a otras ubicaciones</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-green-900/10 border border-green-500/20 rounded-lg p-6">
+                                <h4 class="text-lg font-bold text-green-400 mb-4">📊 Componentes del Dashboard</h4>
+                                <div class="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-green-400 mb-1">25+</div>
+                                        <div class="text-gray-400">Componentes React</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-blue-400 mb-1">12</div>
+                                        <div class="text-gray-400">Tipos de gráficos</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-purple-400 mb-1">8</div>
+                                        <div class="text-gray-400">APIs integradas</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Caso 3: Esta WEB! -->
+                    <div class="case-study" id="case-2">
+                        <div class="cyber-card rounded-xl p-8 neon-border text-center">
+                            <div class="mb-6">
+                                <i class="fas fa-code text-6xl text-purple-400 mb-4 neon-text"></i>
+                                <h3 class="text-2xl font-bold text-cyan-400 mb-4">Desarrollo Web Completo</h3>
+                            </div>
+                            
+                            <div class="grid md:grid-cols-3 gap-6 mb-8 text-left">
+                                <div class="space-y-3">
+                                    <h4 class="text-lg font-semibold text-cyan-300">🎯 Desafío</h4>
+                                    <p class="text-gray-300">Crear una presentación web interactiva cyberpunk para demostrar el poder de GitHub Copilot</p>
+                                </div>
+                                <div class="space-y-3">
+                                    <h4 class="text-lg font-semibold text-green-300">⚡ Resultado</h4>
+                                    <p class="text-gray-300">Desarrollo <strong class="text-green-400">100% asistido</strong> por GitHub Copilot en tiempo real</p>
+                                </div>
+                                <div class="space-y-3">
+                                    <h4 class="text-lg font-semibold text-purple-300">🚀 Impacto</h4>
+                                    <p class="text-gray-300">Presentación <strong class="text-purple-400">completamente funcional</strong> con efectos avanzados</p>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-purple-900/10 border border-purple-500/20 rounded-lg p-6">
+                                <h4 class="text-lg font-bold text-purple-400 mb-4">📊 Métricas de Desarrollo Web</h4>
+                                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-purple-400 mb-1">1,789</div>
+                                        <div class="text-gray-400">Líneas de código</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-blue-400 mb-1">6</div>
+                                        <div class="text-gray-400">Slides interactivos</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-green-400 mb-1">15+</div>
+                                        <div class="text-gray-400">Animaciones CSS</div>
+                                    </div>
+                                    <div class="text-center">
+                                        <div class="text-2xl font-bold text-yellow-400 mb-1">100%</div>
+                                        <div class="text-gray-400">Código con IA</div>
+                                    </div>
+                                </div>
+                                <div class="mt-4 pt-4 border-t border-purple-500/20">
+                                    <div class="grid grid-cols-2 gap-4 text-sm">
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-400">Tecnologías:</span>
+                                            <span class="font-semibold text-purple-400">HTML5 + CSS + JS</span>
+                                        </div>
+                                        <div class="flex justify-between">
+                                            <span class="text-gray-400">CDNs integrados:</span>
+                                            <span class="font-semibold text-purple-400">4</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <!-- Slide 6: Créditos Section -->
+        <!-- Slide 3: Comparación IA Web vs IDE -->
+        <section class="slide cyber-bg min-h-screen flex items-center py-16 relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-4">
+                    <h2 class="text-3xl font-bold text-cyan-400 mb-3 neon-text glitch" data-text="IA Web vs IA Integrada">IA Web vs IA Integrada</h2>
+                    <p class="text-lg text-gray-300 max-w-3xl mx-auto">
+                        Ejemplo práctico: La diferencia real entre usar IA desde el navegador vs tenerla integrada en tu IDE
+                    </p>
+                </div>
+                
+                <!-- Comparison Cards -->
+                <div class="grid md:grid-cols-2 gap-2 mb-4">
+                    <!-- IA desde Web -->
+                    <div class="cyber-card rounded-xl p-6 neon-border bg-red-900/10 border-red-500/30 clickable-panel" onclick="openVideoModal('web-ia')" title="Click para ver demostración en video">
+                        <div class="text-center mb-4">
+                            <i class="fas fa-globe text-3xl text-red-400 mb-3"></i>
+                            <h3 class="text-xl font-bold text-red-400 mb-3">IA desde Navegador Web</h3>
+                            <p class="text-gray-300 text-sm">Proceso tradicional con ChatGPT, Claude, etc.</p>
+                            <p class="text-xs text-red-400 mt-2 opacity-75">
+                                <i class="fas fa-play-circle mr-1"></i>Click para ver demostración
+                            </p>
+                        </div>
+                        
+                        <div class="space-y-3 text-left">
+                            <div class="bg-red-800/20 rounded-lg p-3">
+                                <h4 class="text-lg font-bold text-red-300 mb-3">📝 Proceso paso a paso:</h4>
+                                <div class="space-y-3 text-sm">
+                                    <div class="flex items-start space-x-3">
+                                        <span class="text-red-400 font-bold">1.</span>
+                                        <span class="text-gray-300">Abrir navegador y IA web</span>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <span class="text-red-400 font-bold">2.</span>
+                                        <span class="text-gray-300">Escribir prompt detallado</span>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <span class="text-red-400 font-bold">3.</span>
+                                        <span class="text-gray-300">Esperar respuesta (30-60s)</span>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <span class="text-red-400 font-bold">4.</span>
+                                        <span class="text-gray-300">Copiar código manualmente</span>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <span class="text-red-400 font-bold">5.</span>
+                                        <span class="text-gray-300">Cambiar a IDE y pegar</span>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <span class="text-red-400 font-bold">6.</span>
+                                        <span class="text-gray-300">Ajustar y corregir errores</span>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <span class="text-red-400 font-bold">7.</span>
+                                        <span class="text-gray-300">Repetir si no funciona</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-red-800/10 rounded-lg p-3">
+                                <h4 class="text-red-300 font-bold mb-2">⏱️ Tiempo estimado:</h4>
+                                <p class="text-xl font-bold text-red-400">3-5 minutos por consulta</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- GitHub Copilot -->
+                    <div class="cyber-card rounded-xl p-6 neon-border bg-cyan-900/10 border-cyan-500/30 clickable-panel" onclick="openVideoModal('copilot-ia')" title="Click para ver demostración en video">
+                        <div class="text-center mb-4">
+                            <i class="fab fa-github text-3xl text-cyan-400 mb-3 neon-text"></i>
+                            <h3 class="text-xl font-bold text-cyan-400 mb-3">GitHub Copilot Integrado</h3>
+                            <p class="text-gray-300 text-sm">IA directamente en tu IDE favorito</p>
+                            <p class="text-xs text-cyan-400 mt-2 opacity-75">
+                                <i class="fas fa-play-circle mr-1"></i>Click para ver demostración
+                            </p>
+                        </div>
+                        
+                        <div class="space-y-3 text-left">
+                            <div class="bg-cyan-800/20 rounded-lg p-3">
+                                <h4 class="text-lg font-bold text-cyan-300 mb-3">⚡ Proceso optimizado:</h4>
+                                <div class="space-y-3 text-sm">
+                                    <div class="flex items-start space-x-3">
+                                        <span class="text-cyan-400 font-bold">1.</span>
+                                        <span class="text-gray-300">Escribir comentario o función</span>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <span class="text-cyan-400 font-bold">2.</span>
+                                        <span class="text-gray-300">Copilot sugiere automáticamente</span>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <span class="text-cyan-400 font-bold">3.</span>
+                                        <span class="text-gray-300">Aceptar con Tab o personalizar</span>
+                                    </div>
+                                    <div class="flex items-start space-x-3">
+                                        <span class="text-cyan-400 font-bold">4.</span>
+                                        <span class="text-gray-300">Continuar codificando sin parar</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-cyan-800/10 rounded-lg p-3">
+                                <h4 class="text-cyan-300 font-bold mb-2">⚡ Tiempo estimado:</h4>
+                                <p class="text-lg font-bold text-cyan-400">5-10 segundos</p>
+                            </div>
+                            
+                            <div class="bg-cyan-800/10 rounded-lg p-3">
+                                <h4 class="text-cyan-300 font-bold mb-2">🎯 Ventajas adicionales:</h4>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-check text-green-400"></i>
+                                        <span class="text-gray-300">Contexto del proyecto completo</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-check text-green-400"></i>
+                                        <span class="text-gray-300">Sugerencias en tiempo real</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-check text-green-400"></i>
+                                        <span class="text-gray-300">Sin cambio de ventanas</span>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <i class="fas fa-check text-green-400"></i>
+                                        <span class="text-gray-300">Aprende tu estilo de código</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bottom Summary -->
+                <div class="text-center bg-purple-900/20 border border-purple-500/30 rounded-xl p-4">
+                    <h3 class="text-xl font-bold text-purple-400 mb-3">📊 Resultado Final</h3>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-red-400 mb-1">30x</div>
+                            <div class="text-gray-300 text-sm">Más lento con IA web</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-cyan-400 mb-1 neon-text">95%</div>
+                            <div class="text-gray-300 text-sm">Menos interrupciones</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-2xl font-bold text-green-400 mb-1">∞</div>
+                            <div class="text-gray-300 text-sm">Mejor flujo de desarrollo</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 4: Créditos Section -->
         <section class="slide cyber-bg min-h-screen flex items-center py-20 relative">
             <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
                 <h2 class="text-4xl font-bold text-cyan-400 mb-8 neon-text glitch">Créditos y Reconocimientos</h2>
@@ -646,7 +1341,7 @@
     <script>
         // Slide system variables
         let currentSlide = 0;
-        const totalSlides = 6;
+        const totalSlides = 5;
         
         // Typing animation for hero section
         const typingText = document.getElementById('typing-text');
@@ -686,6 +1381,314 @@
             }
             
             setTimeout(typeWriter, typeSpeed);
+        }
+        
+        // Auto-scale system for responsive content
+        function calculateOptimalScale() {
+            const viewport = {
+                width: window.innerWidth,
+                height: window.innerHeight
+            };
+            
+            // Reference dimensions (design was created for these dimensions)
+            const referenceWidth = 1920;
+            const referenceHeight = 1080;
+            
+            // Calculate scale factors for both dimensions
+            const scaleX = viewport.width / referenceWidth;
+            const scaleY = viewport.height / referenceHeight;
+            
+            // Use the smaller scale to ensure content fits completely
+            const scale = Math.min(scaleX, scaleY);
+            
+            // Add some margin to prevent content from touching edges
+            const scaleFactor = scale * 0.95; // 5% margin
+            
+            // Don't scale up too much on very large screens, but allow reasonable scaling
+            return Math.min(scaleFactor, 1.0); // Max 100% to avoid too large content
+        }
+        
+        // Video Modal Functions
+        function openVideoModal(type) {
+            const modal = document.getElementById('videoModal');
+            const title = document.getElementById('modalTitle');
+            const videoContainer = document.getElementById('videoContainer');
+            
+            // Define video content based on type
+            let videoContent = '';
+            let modalTitle = '';
+            
+            if (type === 'web-ia') {
+                modalTitle = '🌐 IA desde Navegador Web - Demostración';
+                videoContent = `
+                    <div class="text-center p-6">
+                        <i class="fas fa-globe text-6xl text-red-400 mb-6 neon-text"></i>
+                        <h3 class="text-2xl font-bold text-red-400 mb-4">Proceso Tradicional con IA Web</h3>
+                        <p class="text-gray-300 mb-6">Video demostrativo del flujo completo:</p>
+                        
+                        <!-- Video local del repositorio -->
+                        <div class="bg-red-900/20 border border-red-500/30 rounded-lg p-4 mb-6">
+                            <video 
+                                id="webIaVideo"
+                                controls 
+                                width="100%" 
+                                height="300"
+                                poster="videos/web-ia-poster.jpg"
+                                preload="metadata"
+                                style="border-radius: 8px; max-width: 100%;"
+                            >
+                                <source src="videos/web-ia-demo.mp4" type="video/mp4">
+                                <source src="videos/web-ia-demo.webm" type="video/webm">
+                                <div class="text-center p-4 bg-red-800/30 rounded">
+                                    <i class="fas fa-exclamation-triangle text-red-400 mb-2"></i>
+                                    <p class="text-red-300 mb-2">Video no disponible</p>
+                                    <p class="text-sm text-gray-400">
+                                        Agrega el archivo <code>web-ia-demo.mp4</code> en la carpeta <code>/videos</code>
+                                    </p>
+                                </div>
+                            </video>
+                            
+                            <!-- Controles de velocidad personalizados -->
+                            <div class="mt-3 flex justify-center items-center space-x-2 flex-wrap">
+                                <span class="text-xs text-red-300 mr-2">Velocidad:</span>
+                                <button onclick="setVideoSpeed('webIaVideo', 1)" class="speed-btn red active">x1</button>
+                                <button onclick="setVideoSpeed('webIaVideo', 3)" class="speed-btn red">x3</button>
+                                <button onclick="setVideoSpeed('webIaVideo', 5)" class="speed-btn red">x5</button>
+                                <button onclick="setVideoSpeed('webIaVideo', 10)" class="speed-btn red">x10</button>
+                            </div>
+                            
+                            <p class="text-red-300 mt-3 text-sm text-center">
+                                Demostración: Proceso tradicional con ChatGPT/Claude (3-5 minutos)
+                            </p>
+                        </div>
+                        
+                        <div class="text-left space-y-3 text-sm">
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-clock text-red-400"></i>
+                                <span>Tiempo total: 3-5 minutos por consulta</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-window-restore text-red-400"></i>
+                                <span>Cambio constante entre navegador e IDE</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-copy text-red-400"></i>
+                                <span>Copiar y pegar manual del código</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            } else if (type === 'copilot-ia') {
+                modalTitle = '⚡ GitHub Copilot Integrado - Demostración';
+                    videoContent = `
+                        <div class="text-center p-6">
+                            <i class="fab fa-github text-6xl text-cyan-400 mb-6 neon-text"></i>
+                            <h3 class="text-2xl font-bold text-cyan-400 mb-4">GitHub Copilot en Acción</h3>
+                            <p class="text-gray-300 mb-6">Video demostrativo del flujo optimizado:</p>
+                            <!-- Video YouTube embebido -->
+                            <div class="bg-cyan-900/20 border border-cyan-500/30 rounded-lg p-4 mb-6">
+                                <div class="relative w-full flex justify-center">
+                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/ti3LMv-IREE" title="GitHub Copilot Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen style="border-radius: 8px; max-width: 100%;"></iframe>
+                                </div>
+                                <p class="text-cyan-300 mt-3 text-sm text-center">
+                                    Demostración: GitHub Copilot en VS Code en tiempo real (5-10 segundos)
+                                </p>
+                            </div>
+                            <div class="text-left space-y-3 text-sm">
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-bolt text-cyan-400"></i>
+                                    <span>Tiempo total: 5-10 segundos</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-brain text-cyan-400"></i>
+                                    <span>Contexto completo del proyecto</span>
+                                </div>
+                                <div class="flex items-center space-x-3">
+                                    <i class="fas fa-magic text-cyan-400"></i>
+                                    <span>Sugerencias automáticas inteligentes</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+            }
+            
+            title.textContent = modalTitle;
+            videoContainer.innerHTML = videoContent;
+            modal.style.display = 'flex';
+            
+            // Add glitch effect to modal appearance
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.style.opacity = '1';
+                // Initialize video handlers after content is loaded
+                initVideoHandlers();
+            }, 50);
+        }
+        
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            modal.style.opacity = '0';
+            setTimeout(() => {
+                modal.style.display = 'none';
+            }, 300);
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('videoModal');
+            if (event.target === modal) {
+                closeVideoModal();
+            }
+        }
+        
+        // Handle video loading errors
+        function handleVideoError(videoElement, fallbackHtml) {
+            videoElement.style.display = 'none';
+            const fallbackDiv = document.createElement('div');
+            fallbackDiv.className = 'video-fallback';
+            fallbackDiv.innerHTML = fallbackHtml;
+            videoElement.parentNode.insertBefore(fallbackDiv, videoElement.nextSibling);
+        }
+        
+        // Initialize video error handling after modal opens
+        function initVideoHandlers() {
+            const videos = document.querySelectorAll('.video-modal video');
+            videos.forEach(video => {
+                video.addEventListener('error', function() {
+                    console.log('Video failed to load:', video.src);
+                });
+                
+                video.addEventListener('loadstart', function() {
+                    console.log('Video loading started:', video.src);
+                });
+            });
+        }
+        
+        // Video speed control functions
+        function setVideoSpeed(videoId, speed) {
+            const video = document.getElementById(videoId);
+            if (video) {
+                video.playbackRate = speed;
+                
+                // Update button states
+                const container = video.parentElement;
+                const buttons = container.querySelectorAll('.speed-btn');
+                buttons.forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.textContent === 'x' + speed) {
+                        btn.classList.add('active');
+                    }
+                });
+                
+                // Show feedback
+                console.log(`Video ${videoId} speed set to ${speed}x`);
+                
+                // Optional: Show temporary feedback to user
+                showSpeedFeedback(container, speed);
+            }
+        }
+        
+        function showSpeedFeedback(container, speed) {
+            // Remove any existing feedback
+            const existingFeedback = container.querySelector('.speed-feedback');
+            if (existingFeedback) {
+                existingFeedback.remove();
+            }
+            
+            // Create new feedback element
+            const feedback = document.createElement('div');
+            feedback.className = 'speed-feedback';
+            feedback.innerHTML = `
+                <div style="
+                    position: absolute; 
+                    top: 10px; 
+                    right: 10px; 
+                    background: rgba(0, 0, 0, 0.8); 
+                    color: #00f5ff; 
+                    padding: 5px 10px; 
+                    border-radius: 4px; 
+                    font-size: 12px; 
+                    z-index: 1000;
+                    animation: fadeInOut 2s ease-in-out;
+                ">
+                    <i class="fas fa-tachometer-alt mr-1"></i>
+                    Velocidad: ${speed}x
+                </div>
+            `;
+            
+            // Add to container
+            const videoContainer = container.querySelector('video').parentElement;
+            videoContainer.style.position = 'relative';
+            videoContainer.appendChild(feedback);
+            
+            // Remove after 2 seconds
+            setTimeout(() => {
+                if (feedback.parentElement) {
+                    feedback.remove();
+                }
+            }, 2000);
+        }
+        
+        // Add CSS animation for speed feedback
+        const speedFeedbackCSS = `
+            @keyframes fadeInOut {
+                0% { opacity: 0; transform: translateY(-10px); }
+                20% { opacity: 1; transform: translateY(0); }
+                80% { opacity: 1; transform: translateY(0); }
+                100% { opacity: 0; transform: translateY(-10px); }
+            }
+        `;
+        
+        // Inject the CSS
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = speedFeedbackCSS;
+        document.head.appendChild(styleSheet);
+
+        function applyAutoScale() {
+            const scale = calculateOptimalScale();
+            const slides = document.querySelectorAll('.slide');
+            
+            // Calculate centering offsets
+            const viewport = {
+                width: window.innerWidth,
+                height: window.innerHeight
+            };
+            
+            const scaledWidth = 1920 * scale;
+            const scaledHeight = 1080 * scale;
+            
+            const offsetX = (viewport.width - scaledWidth) / 2;
+            const offsetY = (viewport.height - scaledHeight) / 2;
+            
+            slides.forEach((slide, index) => {
+                slide.classList.add('auto-scaled');
+                
+                // Get current transform and preserve navigation transforms
+                const currentTransform = slide.style.transform || '';
+                let newTransform = '';
+                
+                // If slide is currently visible (active)
+                if (slide.classList.contains('active')) {
+                    newTransform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+                } else {
+                    // Hidden slides keep their translateX for navigation but add centering
+                    if (currentTransform.includes('translateX(100%)')) {
+                        newTransform = `translateX(100%) translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+                    } else {
+                        newTransform = `translate(${offsetX}px, ${offsetY}px) scale(${scale})`;
+                    }
+                }
+                
+                // Apply the transform while preserving other properties
+                const currentStyle = slide.style.cssText;
+                if (currentStyle.includes('transform:')) {
+                    slide.style.transform = newTransform;
+                } else {
+                    slide.style.cssText += `transform: ${newTransform} !important;`;
+                }
+            });
+            
+            console.log(`📏 Auto-scale aplicado: ${(scale * 100).toFixed(1)}% con offset (${offsetX.toFixed(1)}, ${offsetY.toFixed(1)})`);
         }
         
         // Slide navigation system
@@ -737,7 +1740,12 @@
                     box-sizing: border-box !important;
                     display: block !important;
                 `;
-                console.log(`✅ Slide ${slideIndex} activada y forzada visible`);
+                console.log(`✅ Slide ${slideIndex} activada`);
+                
+                // Apply auto-scaling after slide is shown
+                setTimeout(() => {
+                    applyAutoScale();
+                }, 50);
             }
             
             // Update nav dot
@@ -800,9 +1808,14 @@
                         box-sizing: border-box !important;
                         display: block !important;
                     `;
-                    console.log('✅ Primera slide activada y forzada visible');
+                    console.log(`✅ Primera slide activada`);
                 }
             });
+            
+            // Apply initial auto-scaling
+            setTimeout(() => {
+                applyAutoScale();
+            }, 100);
             
             // Reset navigation dots
             navDots.forEach((dot, index) => {
@@ -865,6 +1878,15 @@
         document.addEventListener('touchend', function(e) {
             touchEndY = e.changedTouches[0].screenY;
             handleSwipe();
+        });
+        
+        // Window resize listener for auto-scaling
+        window.addEventListener('resize', function() {
+            // Debounce the resize event
+            clearTimeout(window.resizeTimeout);
+            window.resizeTimeout = setTimeout(() => {
+                applyAutoScale();
+            }, 250);
         });
         
         function handleSwipe() {
@@ -1101,14 +2123,43 @@ console.log('📅 Fecha formateada inteligentemente');`,
             setInterval(() => {
                 const glitchElements = document.querySelectorAll('.glitch');
                 glitchElements.forEach(el => {
-                    if (Math.random() < 0.1) {
-                        el.style.transform = 'translateX(' + (Math.random() * 4 - 2) + 'px)';
+                    if (Math.random() < 0.3) {
+                        // Multiple random effects
+                        const translateX = (Math.random() * 12 - 6);
+                        const translateY = (Math.random() * 4 - 2);
+                        const scaleX = 0.95 + Math.random() * 0.1;
+                        const scaleY = 0.98 + Math.random() * 0.04;
+                        const rotateZ = (Math.random() * 4 - 2);
+                        const opacity = 0.3 + Math.random() * 0.7;
+                        const hueRotate = Math.random() * 360;
+                        const brightness = 0.5 + Math.random() * 1;
+                        
+                        // Apply complex transformation
+                        el.style.transform = `translateX(${translateX}px) translateY(${translateY}px) scaleX(${scaleX}) scaleY(${scaleY}) rotateZ(${rotateZ}deg)`;
+                        el.style.opacity = opacity;
+                        el.style.filter = `hue-rotate(${hueRotate}deg) brightness(${brightness}) saturate(1.5)`;
+                        
+                        // Add text corruption effect occasionally
+                        if (Math.random() < 0.1) {
+                            const originalText = el.textContent;
+                            const corruptedText = originalText.split('').map(char => 
+                                Math.random() < 0.1 ? String.fromCharCode(33 + Math.floor(Math.random() * 94)) : char
+                            ).join('');
+                            el.textContent = corruptedText;
+                            
+                            setTimeout(() => {
+                                el.textContent = originalText;
+                            }, 100);
+                        }
+                        
                         setTimeout(() => {
-                            el.style.transform = 'translateX(0)';
-                        }, 100);
+                            el.style.transform = 'translateX(0) translateY(0) scaleX(1) scaleY(1) rotateZ(0deg)';
+                            el.style.opacity = '1';
+                            el.style.filter = 'hue-rotate(0deg) brightness(1) saturate(1)';
+                        }, 200);
                     }
                 });
-            }, 3000);
+            }, 1800);
             
             // Pulse effect on neon elements
             setInterval(() => {
@@ -1130,6 +2181,7 @@ console.log('📅 Fecha formateada inteligentemente');`,
             typeWriter();
             initDemo();
             initCyberEffects();
+            initCaseStudies();
             
             // Show instructions for first-time users
             setTimeout(() => {
@@ -1151,6 +2203,196 @@ console.log('📅 Fecha formateada inteligentemente');`,
                 }
             }, 10000);
         }
+        
+        // Interactive Transformation Function
+        let isTransformed = false;
+        
+        function toggleCopilotTransformation() {
+            const interactiveSlide = document.getElementById('interactive-slide');
+            const mainTitle = document.getElementById('main-title');
+            const mainSubtitle = document.getElementById('main-subtitle');
+            const beforeState = document.getElementById('before-state');
+            const afterState = document.getElementById('after-state');
+            const transformButton = document.getElementById('transform-button');
+            const buttonText = document.getElementById('button-text');
+            
+            // Add glitch effect during transformation
+            interactiveSlide.classList.add('transformation-glitch');
+            
+            if (!isTransformed) {
+                // Transform to AFTER state (Copilot activated)
+                setTimeout(() => {
+                    // Update titles
+                    mainTitle.textContent = 'Desarrollo Revolucionado';
+                    mainTitle.style.color = ''; // Reset to CSS default (gradient)
+                    mainSubtitle.textContent = 'El poder de la IA aplicado al desarrollo';
+                    mainSubtitle.style.color = ''; // Reset to CSS default
+                    
+                    // Hide BEFORE state completely
+                    beforeState.style.opacity = '0';
+                    beforeState.style.transform = 'scale(0.8) translateY(50px)';
+                    
+                    // After transition, remove from layout
+                    setTimeout(() => {
+                        beforeState.style.position = 'absolute';
+                        beforeState.style.pointerEvents = 'none';
+                        beforeState.style.zIndex = '-1';
+                        beforeState.style.top = '0';
+                        beforeState.style.left = '0';
+                        beforeState.style.width = '100%';
+                    }, 500);
+                    
+                    // Show AFTER state
+                    setTimeout(() => {
+                        afterState.style.position = 'relative';
+                        afterState.style.pointerEvents = 'auto';
+                        afterState.style.zIndex = '1';
+                        afterState.style.opacity = '1';
+                        afterState.style.transform = 'scale(1) translateY(0px)';
+                    }, 300);
+                    
+                    // Transform slide background
+                    interactiveSlide.classList.add('transformed');
+                    
+                    // Update button
+                    transformButton.classList.add('activated');
+                    buttonText.innerHTML = 'DESACTIVAR COPILOT';
+                    
+                    isTransformed = true;
+                }, 200);
+                
+            } else {
+                // Transform back to BEFORE state (Traditional development)
+                setTimeout(() => {
+                    // Reset titles
+                    mainTitle.textContent = 'Desarrollo antes de Copilot';
+                    mainTitle.style.color = '#ffffff';
+                    mainSubtitle.textContent = 'Cuando desarrollar software era un proceso lento y tedioso.';
+                    mainSubtitle.style.color = '#cccccc';
+
+                    // Hide AFTER state completely
+                    afterState.style.opacity = '0';
+                    afterState.style.transform = 'scale(0.8) translateY(-50px)';
+                    
+                    // After transition, remove from layout
+                    setTimeout(() => {
+                        afterState.style.position = 'absolute';
+                        afterState.style.pointerEvents = 'none';
+                        afterState.style.zIndex = '-1';
+                        afterState.style.top = '0';
+                        afterState.style.left = '0';
+                        afterState.style.width = '100%';
+                    }, 500);
+                    
+                    // Show BEFORE state
+                    setTimeout(() => {
+                        beforeState.style.position = 'relative';
+                        beforeState.style.pointerEvents = 'auto';
+                        beforeState.style.zIndex = '1';
+                        beforeState.style.opacity = '1';
+                        beforeState.style.transform = 'scale(1) translateY(0px)';
+                    }, 300);
+                    
+                    // Reset slide background
+                    interactiveSlide.classList.remove('transformed');
+                    
+                    // Reset button
+                    transformButton.classList.remove('activated');
+                    buttonText.innerHTML = 'ACTIVAR COPILOT';
+                    
+                    isTransformed = false;
+                }, 200);
+            }
+            
+            // Remove glitch effect
+            setTimeout(() => {
+                interactiveSlide.classList.remove('transformation-glitch');
+            }, 600);
+        }
+        
+        /* ===== CASE STUDY NAVIGATION SYSTEM ===== */
+        let currentCase = 0;
+        
+        function showCase(caseIndex) {
+            const cases = document.querySelectorAll('.case-study');
+            const navButtons = document.querySelectorAll('.case-nav-btn');
+            
+            // Don't change if same case
+            if (caseIndex === currentCase) return;
+            
+            // Remove active from all nav buttons
+            navButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Hide current case with animation
+            if (cases[currentCase]) {
+                cases[currentCase].classList.add('leaving');
+                cases[currentCase].classList.remove('active');
+                
+                setTimeout(() => {
+                    cases[currentCase].classList.remove('leaving');
+                }, 400);
+            }
+            
+            // Show new case with animation
+            setTimeout(() => {
+                if (cases[caseIndex]) {
+                    cases[caseIndex].classList.add('entering', 'active');
+                    
+                    setTimeout(() => {
+                        cases[caseIndex].classList.remove('entering');
+                    }, 600);
+                }
+                
+                // Activate corresponding nav button
+                if (navButtons[caseIndex]) {
+                    navButtons[caseIndex].classList.add('active');
+                }
+                
+                currentCase = caseIndex;
+            }, 200);
+        }
+        
+        // Initialize case studies on page load
+        function initCaseStudies() {
+            const cases = document.querySelectorAll('.case-study');
+            const navButtons = document.querySelectorAll('.case-nav-btn');
+            
+            // Hide all cases except first
+            cases.forEach((caseEl, index) => {
+                if (index === 0) {
+                    caseEl.classList.add('active');
+                } else {
+                    caseEl.classList.remove('active');
+                }
+            });
+            
+            // Activate first nav button
+            navButtons.forEach((btn, index) => {
+                if (index === 0) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+            
+            currentCase = 0;
+        }
     </script>
+    
+    <!-- Video Modal -->
+    <div id="videoModal" class="video-modal" style="display: none;">
+        <div class="video-modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h2 id="modalTitle" class="text-2xl font-bold text-purple-400"></h2>
+                <button class="video-modal-close" onclick="closeVideoModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div id="videoContainer" class="video-container">
+                <!-- Video content will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+    
 </body>
 </html>
