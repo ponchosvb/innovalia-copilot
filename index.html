@@ -1539,6 +1539,13 @@
 
     <!-- JavaScript -->
     <script>
+        // Force landscape orientation on mobile devices
+        if (window.screen.orientation && window.innerWidth < 768) {
+            screen.orientation.lock('landscape').catch(() => {
+                console.log('Orientation lock not supported or denied');
+            });
+        }
+        
         // Slide system variables
         let currentSlide = 0;
         const totalSlides = 5;
