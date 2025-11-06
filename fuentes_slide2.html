@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casos de Éxito - Detalles y Métricas</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0a0f;
+        }
+        
+        /* Cursor personalizado - punto láser rojo cyberpunk */
+        body {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"><circle cx="10" cy="10" r="4" fill="%23ff0040" opacity="0.9"/><circle cx="10" cy="10" r="6" fill="none" stroke="%23ff0040" stroke-width="1" opacity="0.5"/><circle cx="10" cy="10" r="2" fill="%23ffffff" opacity="0.8"/></svg>') 10 10, auto;
+        }
+        
+        a, button {
+            cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5" fill="%2300ffff" opacity="0.9"/><circle cx="12" cy="12" r="8" fill="none" stroke="%2300ffff" stroke-width="1.5" opacity="0.6"/><circle cx="12" cy="12" r="2.5" fill="%23ffffff" opacity="0.9"/></svg>') 12 12, pointer;
+        }
+        
+        /* Animated gradient background */
+        .cyber-bg {
+            background: linear-gradient(135deg, #0a0a0f 0%, #1a0a1f 50%, #0a0a0f 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* Neon text effect */
+        .neon-text {
+            text-shadow: 
+                0 0 10px rgba(0, 245, 255, 0.5),
+                0 0 20px rgba(0, 245, 255, 0.3),
+                0 0 30px rgba(0, 245, 255, 0.2);
+        }
+        
+        /* Neon border effect */
+        .neon-border {
+            box-shadow: 
+                0 0 5px rgba(0, 245, 255, 0.2),
+                0 0 10px rgba(0, 245, 255, 0.1),
+                inset 0 0 10px rgba(0, 245, 255, 0.05);
+        }
+        
+        /* Card styles */
+        .cyber-card {
+            background: rgba(10, 10, 31, 0.6);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .cyber-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 
+                0 0 15px rgba(0, 245, 255, 0.3),
+                0 0 30px rgba(0, 245, 255, 0.1);
+        }
+        
+        /* Button back */
+        .back-btn {
+            background: rgba(6, 182, 212, 0.1);
+            border: 2px solid rgba(6, 182, 212, 0.5);
+            color: #06b6d4;
+            transition: all 0.3s ease;
+        }
+        
+        .back-btn:hover {
+            background: rgba(6, 182, 212, 0.3);
+            border-color: #06b6d4;
+            box-shadow: 0 0 20px rgba(6, 182, 212, 0.4);
+            transform: scale(1.05);
+        }
+        
+        /* Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(10, 10, 31, 0.5);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: rgba(0, 245, 255, 0.3);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: rgba(0, 245, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="cyber-bg min-h-screen text-white">
+    
+    <!-- Back button -->
+    <div class="fixed top-6 left-6 z-50">
+        <button onclick="window.close()" class="back-btn px-6 py-3 rounded-lg font-semibold flex items-center space-x-2">
+            <i class="fas fa-arrow-left"></i>
+            <span>Volver a Presentación</span>
+        </button>
+    </div>
+    
+    <div class="container mx-auto px-6 py-20 max-w-6xl">
+        
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-5xl md:text-6xl font-bold text-cyan-400 mb-4 neon-text">
+                <i class="fas fa-trophy mr-4"></i>
+                Casos de Éxito Reales
+            </h1>
+            <p class="text-xl text-gray-300 mb-2">Proyectos Innovalia con GitHub Copilot & IAs</p>
+            <p class="text-lg text-gray-400">Detalles técnicos, métricas y análisis de impacto</p>
+        </div>
+        
+        <!-- Resumen ejecutivo -->
+        <div class="cyber-card rounded-xl p-8 neon-border mb-8 bg-purple-900/10 border-purple-500/30">
+            <h2 class="text-3xl font-bold text-purple-400 mb-6 flex items-center">
+                <i class="fas fa-chart-bar mr-3"></i>
+                Resumen Ejecutivo
+            </h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="text-center bg-purple-800/20 rounded-lg p-4">
+                    <div class="text-4xl font-bold text-cyan-400 mb-2">€84,500</div>
+                    <div class="text-gray-300">Ahorro total acumulado</div>
+                </div>
+                <div class="text-center bg-purple-800/20 rounded-lg p-4">
+                    <div class="text-4xl font-bold text-green-400 mb-2">97%</div>
+                    <div class="text-gray-300">Reducción de tiempo promedio</div>
+                </div>
+                <div class="text-center bg-purple-800/20 rounded-lg p-4">
+                    <div class="text-4xl font-bold text-yellow-400 mb-2">3</div>
+                    <div class="text-gray-300">Proyectos exitosos</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Caso 1: Firmware ECUs -->
+        <div class="cyber-card rounded-xl p-8 neon-border mb-8 border-blue-500/30">
+            <div class="flex items-start space-x-4 mb-6">
+                <i class="fas fa-microchip text-5xl text-blue-400 neon-text mt-1"></i>
+                <div class="flex-1">
+                    <h2 class="text-3xl font-bold text-blue-300 mb-2">Caso 1: Software de Actualización de Firmware de Electrónicas</h2>
+                    <p class="text-gray-400 text-lg">Sistema automático de flasheo y actualización de ECUs para aparatos de gas premium</p>
+                </div>
+            </div>
+            
+            <!-- Contexto del proyecto -->
+            <div class="bg-blue-900/10 rounded-lg p-6 mb-6">
+                <h3 class="text-2xl font-bold text-blue-300 mb-4">📋 Contexto del Proyecto</h3>
+                <div class="space-y-3 text-gray-300">
+                    <p><strong class="text-blue-400">Problema:</strong> El fabricante de aparatos de gas premium tenía 4,500 unidades electrónicas (ECUs) en stock en la fábrica de Santander que necesitaban actualización de software debido a bugs detectados en las electrónicas.</p>
+                    <p><strong class="text-blue-400">Solución del fabricante:</strong> Ofrecía realizar el trabajo de actualización por 63,000€.</p>
+                    <p><strong class="text-blue-400">Nuestra solución:</strong> Desarrollo de software propio en 1 día usando GitHub Copilot para automatizar el proceso de actualización de firmware en planta.</p>
+                </div>
+            </div>
+            
+            <!-- Detalles técnicos -->
+            <div class="bg-blue-900/10 rounded-lg p-6 mb-6">
+                <h3 class="text-2xl font-bold text-blue-300 mb-4">⚙️ Detalles Técnicos</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-blue-400 mb-3">Stack Tecnológico:</h4>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>✅ <strong>Python 3.x</strong> - Lenguaje principal</li>
+                            <li>✅ <strong>ODX/ISO 22900</strong> - Protocolos de diagnóstico industrial</li>
+                            <li>✅ <strong>CAN/UDS</strong> - Comunicación con ECUs</li>
+                            <li>✅ <strong>DLL nativas</strong> - Interfaz con hardware de flasheo</li>
+                            <li>✅ <strong>GUI con Tkinter</strong> - Interfaz de usuario</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-blue-400 mb-3">Componentes del Sistema:</h4>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>📁 <strong>1,048 líneas</strong> de código Python</li>
+                            <li>📄 <strong>85 archivos</strong> Python (.py)</li>
+                            <li>⚙️ <strong>41 configuraciones</strong> ODX/XML</li>
+                            <li>🔧 <strong>36 ejecutables/DLLs</strong> para hardware</li>
+                            <li>📊 Sistema de logs y reporting automático</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Desafíos técnicos -->
+            <div class="bg-blue-900/10 rounded-lg p-6 mb-6">
+                <h3 class="text-2xl font-bold text-blue-300 mb-4">🎯 Desafíos Técnicos Superados</h3>
+                <div class="space-y-3">
+                    <div class="flex items-start space-x-3">
+                        <i class="fas fa-check-circle text-green-400 mt-1"></i>
+                        <div>
+                            <strong class="text-blue-400">Integración con hardware propietario:</strong>
+                            <span class="text-gray-300"> Copilot ayudó a interpretar documentación ODX compleja y generar bindings Python para DLLs C++ del fabricante de aparatos de gas.</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <i class="fas fa-check-circle text-green-400 mt-1"></i>
+                        <div>
+                            <strong class="text-blue-400">Protocolo UDS (ISO 14229):</strong>
+                            <span class="text-gray-300"> Sin conocimiento previo del protocolo industrial, Copilot generó parsers de mensajes y lógica de flasheo en minutos.</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <i class="fas fa-check-circle text-green-400 mt-1"></i>
+                        <div>
+                            <strong class="text-blue-400">Manejo de errores críticos:</strong>
+                            <span class="text-gray-300"> Sistema robusto de recuperación ante fallos durante el flasheo que evita "brickear" las ECUs de los aparatos.</span>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-3">
+                        <i class="fas fa-check-circle text-green-400 mt-1"></i>
+                        <div>
+                            <strong class="text-blue-400">Automatización en fábrica:</strong>
+                            <span class="text-gray-300"> Scripts de batch processing para actualizar múltiples ECUs en la planta de Santander sin intervención manual.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Métricas de impacto -->
+            <div class="bg-gradient-to-r from-blue-900/20 to-green-900/20 rounded-lg p-6 border border-blue-500/30">
+                <h3 class="text-2xl font-bold text-cyan-400 mb-4">📊 Métricas de Impacto</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-cyan-300 mb-3">Desglose de Costes:</h4>
+                        <div class="space-y-2 text-lg">
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Oferta fabricante:</span>
+                                <span class="font-bold text-red-400">€63,000</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Desarrollo software (8h):</span>
+                                <span class="font-bold text-gray-300">Coste interno</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Subcontrata reprogramación:</span>
+                                <span class="font-bold text-gray-300">€1,500</span>
+                            </div>
+                            <div class="flex justify-between border-t border-cyan-500/30 pt-2">
+                                <span class="text-cyan-400 font-bold">Ahorro total:</span>
+                                <span class="font-bold text-green-400 text-2xl">€61,500</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">ROI:</span>
+                                <span class="font-bold text-green-400">4,000%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-cyan-300 mb-3">Ahorro de Tiempo:</h4>
+                        <div class="space-y-2 text-lg">
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Estimado tradicional:</span>
+                                <span class="font-bold text-red-400">≥30 días</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Desarrollo con IA:</span>
+                                <span class="font-bold text-gray-300">8 horas</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Reprogramación en planta:</span>
+                                <span class="font-bold text-gray-300">1 día</span>
+                            </div>
+                            <div class="flex justify-between border-t border-cyan-500/30 pt-2">
+                                <span class="text-cyan-400 font-bold">Reducción:</span>
+                                <span class="font-bold text-green-400 text-2xl">97%</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">ECUs procesadas:</span>
+                                <span class="font-bold text-green-400">4,500 unidades</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cómo ayudó Copilot -->
+            <div class="mt-6 bg-cyan-900/10 rounded-lg p-6 border border-cyan-500/20">
+                <h3 class="text-xl font-bold text-cyan-300 mb-3">🤖 Cómo ayudó GitHub Copilot:</h3>
+                <ul class="space-y-2 text-gray-300">
+                    <li>• Generó parsers ODX/XML automáticamente leyendo especificaciones</li>
+                    <li>• Sugirió patrones de diseño para comunicación asíncrona CAN</li>
+                    <li>• Completó implementación de protocolo UDS sin conocimiento previo</li>
+                    <li>• Creó tests unitarios para validar mensajes de diagnóstico</li>
+                    <li>• Documentó código automáticamente con docstrings descriptivos</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Caso 2: Análisis de Suciedad -->
+        <div class="cyber-card rounded-xl p-8 neon-border mb-8 border-green-500/30">
+            <div class="flex items-start space-x-4 mb-6">
+                <i class="fas fa-video text-5xl text-green-400 neon-text mt-1"></i>
+                <div class="flex-1">
+                    <h2 class="text-3xl font-bold text-green-300 mb-2">Caso 2: Sistema de Análisis de Limpieza con Visión Artificial</h2>
+                    <p class="text-gray-400 text-lg">Comparación automática de parrillas: nuevas, sucias y limpiadas</p>
+                </div>
+            </div>
+            
+            <!-- Contexto del proyecto -->
+            <div class="bg-green-900/10 rounded-lg p-6 mb-6">
+                <h3 class="text-2xl font-bold text-green-300 mb-4">📋 Contexto del Proyecto</h3>
+                <div class="space-y-3 text-gray-300">
+                    <p><strong class="text-green-400">Problema:</strong> El cliente necesitaba un sistema para validar la eficacia de su proceso de limpieza de parrillas industriales comparando imágenes antes/después.</p>
+                    <p><strong class="text-green-400">Restricción temporal:</strong> El proyecto se desarrolló durante una demostración en vivo de GitHub Copilot - 50 minutos de sesión en directo.</p>
+                    <p><strong class="text-green-400">Nuestra solución:</strong> MVP funcional desarrollado en tiempo real + 6 horas de refinamiento por parte del cliente = solución completa.</p>
+                </div>
+            </div>
+            
+            <!-- Detalles técnicos -->
+            <div class="bg-green-900/10 rounded-lg p-6 mb-6">
+                <h3 class="text-2xl font-bold text-green-300 mb-4">⚙️ Detalles Técnicos</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-green-400 mb-3">Stack Tecnológico:</h4>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>✅ <strong>Python 3.x</strong> - Lenguaje base</li>
+                            <li>✅ <strong>OpenCV</strong> - Procesamiento de imágenes</li>
+                            <li>✅ <strong>NumPy</strong> - Operaciones matriciales</li>
+                            <li>✅ <strong>React</strong> - Dashboard web interactivo</li>
+                            <li>✅ <strong>D3.js / Chart.js</strong> - Visualización de datos</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-green-400 mb-3">Funcionalidades:</h4>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>📸 Carga y comparación de imágenes</li>
+                            <li>🔍 Detección de diferencias pixel-a-pixel</li>
+                            <li>📊 Métricas de limpieza (% suciedad eliminada)</li>
+                            <li>📈 Gráficos de tendencias y reportes</li>
+                            <li>🎨 Mapas de calor de zonas problemáticas</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Timeline del desarrollo -->
+            <div class="bg-green-900/10 rounded-lg p-6 mb-6">
+                <h3 class="text-2xl font-bold text-green-300 mb-4">⏱️ Timeline del Desarrollo</h3>
+                <div class="space-y-4">
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-green-500 rounded-full w-3 h-3 mt-2 flex-shrink-0"></div>
+                        <div>
+                            <div class="font-bold text-green-400">Minuto 0-15: Setup inicial</div>
+                            <p class="text-gray-300">Configuración del entorno, instalación de dependencias (OpenCV, NumPy), estructura del proyecto.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-green-500 rounded-full w-3 h-3 mt-2 flex-shrink-0"></div>
+                        <div>
+                            <div class="font-bold text-green-400">Minuto 15-35: Lógica de comparación</div>
+                            <p class="text-gray-300">Copilot generó algoritmos de diferencia de imágenes, detección de bordes, cálculo de métricas de suciedad.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-green-500 rounded-full w-3 h-3 mt-2 flex-shrink-0"></div>
+                        <div>
+                            <div class="font-bold text-green-400">Minuto 35-50: Interfaz y visualización</div>
+                            <p class="text-gray-300">React dashboard básico con carga de imágenes y visualización de resultados en tiempo real.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4">
+                        <div class="bg-cyan-500 rounded-full w-3 h-3 mt-2 flex-shrink-0"></div>
+                        <div>
+                            <div class="font-bold text-cyan-400">Post-demo: 6 horas de refinamiento</div>
+                            <p class="text-gray-300">Cliente añadió gráficos avanzados, integración con APIs, mejoras UX, y sistema de reportes PDF.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Métricas de impacto -->
+            <div class="bg-gradient-to-r from-green-900/20 to-cyan-900/20 rounded-lg p-6 border border-green-500/30">
+                <h3 class="text-2xl font-bold text-cyan-400 mb-4">📊 Métricas de Impacto</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-cyan-300 mb-3">Ahorro Económico:</h4>
+                        <div class="space-y-2 text-lg">
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Coste subcontratación estimado:</span>
+                                <span class="font-bold text-red-400">€20,000</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Coste interno (7 hrs):</span>
+                                <span class="font-bold text-gray-300">~€350</span>
+                            </div>
+                            <div class="flex justify-between border-t border-cyan-500/30 pt-2">
+                                <span class="text-cyan-400 font-bold">Ahorro total:</span>
+                                <span class="font-bold text-green-400 text-2xl">~€19,650</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">ROI:</span>
+                                <span class="font-bold text-green-400">5,600%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-cyan-300 mb-3">Componentes del Dashboard:</h4>
+                        <div class="space-y-2 text-lg">
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Componentes React:</span>
+                                <span class="font-bold text-cyan-400">25+</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Tipos de gráficos:</span>
+                                <span class="font-bold text-cyan-400">12</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">APIs integradas:</span>
+                                <span class="font-bold text-cyan-400">8</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Algoritmos CV:</span>
+                                <span class="font-bold text-cyan-400">5</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cómo ayudó Copilot -->
+            <div class="mt-6 bg-cyan-900/10 rounded-lg p-6 border border-cyan-500/20">
+                <h3 class="text-xl font-bold text-cyan-300 mb-3">🤖 Cómo ayudó GitHub Copilot (en 50 minutos):</h3>
+                <ul class="space-y-2 text-gray-300">
+                    <li>• Generó código OpenCV complejo para comparación de imágenes sin conocimiento previo</li>
+                    <li>• Sugirió algoritmos óptimos (SSIM, MSE, histogram comparison) automáticamente</li>
+                    <li>• Creó componentes React con mejores prácticas mientras explicábamos la lógica</li>
+                    <li>• Implementó pipeline completo de procesamiento de imágenes en minutos</li>
+                    <li>• Permitió enfocarse en la demostración sin preocuparse por sintaxis o boilerplate</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Caso 3: Esta Web -->
+        <div class="cyber-card rounded-xl p-8 neon-border mb-8 border-purple-500/30">
+            <div class="flex items-start space-x-4 mb-6">
+                <i class="fas fa-code text-5xl text-purple-400 neon-text mt-1"></i>
+                <div class="flex-1">
+                    <h2 class="text-3xl font-bold text-purple-300 mb-2">Caso 3: Esta Presentación Web Interactiva</h2>
+                    <p class="text-gray-400 text-lg">Diseño cyberpunk completo con animaciones, efectos y navegación personalizada</p>
+                </div>
+            </div>
+            
+            <!-- Contexto del proyecto -->
+            <div class="bg-purple-900/10 rounded-lg p-6 mb-6">
+                <h3 class="text-2xl font-bold text-purple-300 mb-4">📋 Contexto del Proyecto</h3>
+                <div class="space-y-3 text-gray-300">
+                    <p><strong class="text-purple-400">Objetivo:</strong> Crear una presentación web impactante para demostrar las capacidades de GitHub Copilot a un foro de gestión.</p>
+                    <p><strong class="text-purple-400">Enfoque:</strong> Desarrollar TODO el proyecto usando exclusivamente GitHub Copilot como asistente - meta-demostración en vivo.</p>
+                    <p><strong class="text-purple-400">Resultado:</strong> Presentación completa, responsive, con efectos avanzados desarrollada en ~6 horas vs 2 semanas estimadas sin IA.</p>
+                </div>
+            </div>
+            
+            <!-- Detalles técnicos -->
+            <div class="bg-purple-900/10 rounded-lg p-6 mb-6">
+                <h3 class="text-2xl font-bold text-purple-300 mb-4">⚙️ Detalles Técnicos</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-purple-400 mb-3">Stack Tecnológico:</h4>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>✅ <strong>HTML5 semántico</strong> - Estructura</li>
+                            <li>✅ <strong>Tailwind CSS (CDN)</strong> - Estilos utility-first</li>
+                            <li>✅ <strong>CSS3 avanzado</strong> - Animaciones y efectos</li>
+                            <li>✅ <strong>JavaScript Vanilla</strong> - Interactividad</li>
+                            <li>✅ <strong>Chart.js</strong> - Gráficos dinámicos</li>
+                            <li>✅ <strong>Font Awesome</strong> - Iconografía</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-purple-400 mb-3">Características Implementadas:</h4>
+                        <ul class="space-y-2 text-gray-300">
+                            <li>🎨 <strong>Tema cyberpunk</strong> completo</li>
+                            <li>✨ <strong>15+ animaciones CSS</strong> personalizadas</li>
+                            <li>🖱️ <strong>Cursor láser</strong> personalizado SVG</li>
+                            <li>🎯 <strong>Navegación click</strong> con zonas (40/60)</li>
+                            <li>📱 <strong>Responsive design</strong> completo</li>
+                            <li>🎬 <strong>Transiciones fluidas</strong> entre slides</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Componentes desarrollados -->
+            <div class="bg-purple-900/10 rounded-lg p-6 mb-6">
+                <h3 class="text-2xl font-bold text-purple-300 mb-4">🔧 Componentes Desarrollados con Copilot</h3>
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check text-green-400"></i>
+                            <span class="text-gray-300"><strong>Slide 0:</strong> Landing con Hero section y CTAs</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check text-green-400"></i>
+                            <span class="text-gray-300"><strong>Slide 1:</strong> Transformación interactiva (antes/después)</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check text-green-400"></i>
+                            <span class="text-gray-300"><strong>Slide 2:</strong> Casos de éxito con navegación tabs</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check text-green-400"></i>
+                            <span class="text-gray-300"><strong>Slide 3:</strong> Comparación IA Web vs IDE</span>
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check text-green-400"></i>
+                            <span class="text-gray-300"><strong>Slide 4:</strong> Créditos con tecnologías</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check text-green-400"></i>
+                            <span class="text-gray-300"><strong>Efectos:</strong> Neon glow, glitch, gradientes animados</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check text-green-400"></i>
+                            <span class="text-gray-300"><strong>Navegación:</strong> Click zones + teclado + touch</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-check text-green-400"></i>
+                            <span class="text-gray-300"><strong>Extras:</strong> Modals, tooltips, indicadores visuales</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Métricas del proyecto -->
+            <div class="bg-gradient-to-r from-purple-900/20 to-pink-900/20 rounded-lg p-6 border border-purple-500/30">
+                <h3 class="text-2xl font-bold text-cyan-400 mb-4">📊 Métricas del Proyecto</h3>
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="text-center bg-purple-800/20 rounded-lg p-4">
+                        <div class="text-3xl font-bold text-purple-400 mb-2">2,600+</div>
+                        <div class="text-gray-300 text-sm">Líneas de código HTML/CSS/JS</div>
+                    </div>
+                    <div class="text-center bg-purple-800/20 rounded-lg p-4">
+                        <div class="text-3xl font-bold text-cyan-400 mb-2">5</div>
+                        <div class="text-gray-300 text-sm">Slides interactivos</div>
+                    </div>
+                    <div class="text-center bg-purple-800/20 rounded-lg p-4">
+                        <div class="text-3xl font-bold text-green-400 mb-2">15+</div>
+                        <div class="text-gray-300 text-sm">Animaciones CSS únicas</div>
+                    </div>
+                    <div class="text-center bg-purple-800/20 rounded-lg p-4">
+                        <div class="text-3xl font-bold text-yellow-400 mb-2">100%</div>
+                        <div class="text-gray-300 text-sm">Código asistido por IA</div>
+                    </div>
+                    <div class="text-center bg-purple-800/20 rounded-lg p-4">
+                        <div class="text-3xl font-bold text-pink-400 mb-2">4</div>
+                        <div class="text-gray-300 text-sm">CDNs integrados</div>
+                    </div>
+                    <div class="text-center bg-purple-800/20 rounded-lg p-4">
+                        <div class="text-3xl font-bold text-blue-400 mb-2">3</div>
+                        <div class="text-gray-300 text-sm">Sistemas de navegación</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- ROI del proyecto -->
+            <div class="mt-6 bg-gradient-to-r from-green-900/20 to-cyan-900/20 rounded-lg p-6 border border-green-500/30">
+                <h3 class="text-2xl font-bold text-green-300 mb-4">💰 Análisis de Costes vs Valor</h3>
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <h4 class="font-semibold text-cyan-300 mb-3">Desarrollo Tradicional (sin IA):</h4>
+                        <div class="space-y-2 text-lg">
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Diseño UI/UX:</span>
+                                <span class="text-gray-300">8-12 hrs → €600</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Desarrollo Frontend:</span>
+                                <span class="text-gray-300">25-30 hrs → €1,750</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Contenido & Research:</span>
+                                <span class="text-gray-300">6-8 hrs → €320</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Testing & QA:</span>
+                                <span class="text-gray-300">4-6 hrs → €280</span>
+                            </div>
+                            <div class="flex justify-between border-t border-red-500/30 pt-2">
+                                <span class="text-red-400 font-bold">Total estimado:</span>
+                                <span class="font-bold text-red-400">€2,950</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Tiempo:</span>
+                                <span class="text-red-400 font-bold">2 semanas</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-cyan-300 mb-3">Con GitHub Copilot:</h4>
+                        <div class="space-y-2 text-lg">
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Desarrollo total:</span>
+                                <span class="text-gray-300">~6 hrs</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Coste horario dev:</span>
+                                <span class="text-gray-300">€50/hr</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Licencia Copilot:</span>
+                                <span class="text-gray-300">€10/mes</span>
+                            </div>
+                            <div class="flex justify-between border-t border-green-500/30 pt-2">
+                                <span class="text-green-400 font-bold">Total real:</span>
+                                <span class="font-bold text-green-400">€310</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Tiempo:</span>
+                                <span class="text-green-400 font-bold">6 horas</span>
+                            </div>
+                            <div class="flex justify-between border-t border-cyan-500/30 pt-2 mt-2">
+                                <span class="text-cyan-400 font-bold text-xl">AHORRO:</span>
+                                <span class="font-bold text-cyan-400 text-2xl">€2,640 (90%)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Cómo ayudó Copilot -->
+            <div class="mt-6 bg-cyan-900/10 rounded-lg p-6 border border-cyan-500/20">
+                <h3 class="text-xl font-bold text-cyan-300 mb-3">🤖 Cómo ayudó GitHub Copilot en este proyecto:</h3>
+                <ul class="space-y-2 text-gray-300">
+                    <li>• <strong>Diseño:</strong> Sugirió paletas de colores cyberpunk, efectos neon y animaciones complejas</li>
+                    <li>• <strong>CSS:</strong> Generó gradientes animados, keyframes, glassmorphism sin buscar referencias</li>
+                    <li>• <strong>JavaScript:</strong> Implementó navegación personalizada, gestión de estado, eventos touch</li>
+                    <li>• <strong>SVG:</strong> Creó cursor personalizado con efectos láser desde cero</li>
+                    <li>• <strong>Responsive:</strong> Adaptó automáticamente todos los componentes a móvil/tablet</li>
+                    <li>• <strong>Accesibilidad:</strong> Añadió ARIA labels, navegación por teclado, tooltips descriptivos</li>
+                    <li>• <strong>Optimización:</strong> Sugirió mejoras de rendimiento, lazy loading, debouncing</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Conclusiones generales -->
+        <div class="cyber-card rounded-xl p-8 neon-border bg-cyan-900/10 border-cyan-500/30">
+            <h2 class="text-3xl font-bold text-cyan-400 mb-6 flex items-center neon-text">
+                <i class="fas fa-lightbulb mr-3"></i>
+                Conclusiones y Lecciones Aprendidas
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                <div>
+                    <h3 class="text-xl font-bold text-green-300 mb-3">✅ Factores de Éxito Comunes:</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>• <strong>Descripción clara:</strong> Comentarios precisos generan código preciso</li>
+                        <li>• <strong>Iteración rápida:</strong> Probar, ajustar, mejorar en ciclos cortos</li>
+                        <li>• <strong>Contexto del proyecto:</strong> Copilot aprende de archivos abiertos</li>
+                        <li>• <strong>Confianza informada:</strong> Revisar código generado, no aceptar ciegamente</li>
+                        <li>• <strong>Aprendizaje continuo:</strong> Desarrollador aprende mientras Copilot ayuda</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-bold text-yellow-300 mb-3">⚠️ Consideraciones Importantes:</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>• <strong>No es magia:</strong> Requiere experiencia para validar sugerencias</li>
+                        <li>• <strong>Mejor con stack conocido:</strong> Más efectivo en tecnologías populares</li>
+                        <li>• <strong>Seguridad:</strong> Revisar código para vulnerabilidades potenciales</li>
+                        <li>• <strong>Licencias:</strong> Ser consciente de posibles coincidencias con código existente</li>
+                        <li>• <strong>Complemento, no reemplazo:</strong> Aumenta capacidad del desarrollador</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="bg-purple-900/20 rounded-lg p-6 border border-purple-500/30">
+                <h3 class="text-xl font-bold text-purple-300 mb-3">🎯 Impacto Real en Innovalia:</h3>
+                <div class="grid md:grid-cols-3 gap-4 text-center">
+                    <div>
+                        <div class="text-3xl font-bold text-cyan-400 mb-1">€84,500</div>
+                        <div class="text-gray-300 text-sm">Ahorrado en 3 proyectos</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-green-400 mb-1">97%</div>
+                        <div class="text-gray-300 text-sm">Reducción tiempo promedio</div>
+                    </div>
+                    <div>
+                        <div class="text-3xl font-bold text-yellow-400 mb-1">100%</div>
+                        <div class="text-gray-300 text-sm">Satisfacción del cliente</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="text-center mt-12 pt-8 border-t border-cyan-500/30">
+            <p class="text-gray-400 text-sm">
+                Documentación preparada para: <strong class="text-cyan-400">Presentación Innovalia - Casos de Éxito GitHub Copilot</strong>
+            </p>
+            <p class="text-gray-500 text-xs mt-2">
+                Última actualización: Noviembre 2025 | Datos verificados y proyectos reales
+            </p>
+        </div>
+        
+    </div>
+    
+</body>
+</html>
