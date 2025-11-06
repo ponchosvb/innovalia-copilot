@@ -1539,12 +1539,69 @@
 
     <!-- JavaScript -->
     <script>
-        // Force landscape orientation on mobile devices
-        if (window.screen.orientation && window.innerWidth < 768) {
-            screen.orientation.lock('landscape').catch(() => {
-                console.log('Orientation lock not supported or denied');
-            });
+        // Force landscape orientation on mobile devices with visual prompt
+        function handleMobileOrientation() {
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            const isPortrait = window.innerHeight > window.innerWidth;
+            
+            if (isMobile && isPortrait) {
+                // Show rotation prompt overlay
+                showRotationPrompt();
+            } else {
+                hideRotationPrompt();
+            }
         }
+        
+        function showRotationPrompt() {
+            let rotationOverlay = document.getElementById('rotation-prompt');
+            if (!rotationOverlay) {
+                rotationOverlay = document.createElement('div');
+                rotationOverlay.id = 'rotation-prompt';
+                rotationOverlay.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.95);
+                    z-index: 999999;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    color: #00f5ff;
+                    font-family: 'Courier New', monospace;
+                    text-align: center;
+                    padding: 20px;
+                `;
+                rotationOverlay.innerHTML = `
+                    <i class="fas fa-mobile-alt" style="font-size: 80px; margin-bottom: 30px; animation: rotate 2s infinite;"></i>
+                    <h2 style="font-size: 28px; margin-bottom: 20px; text-shadow: 0 0 10px #00f5ff;">Por favor, gira tu dispositivo</h2>
+                    <p style="font-size: 18px; opacity: 0.8;">Esta presentación está optimizada para modo horizontal</p>
+                    <style>
+                        @keyframes rotate {
+                            0%, 100% { transform: rotate(0deg); }
+                            25% { transform: rotate(-90deg); }
+                            75% { transform: rotate(-90deg); }
+                        }
+                    </style>
+                `;
+                document.body.appendChild(rotationOverlay);
+            }
+            rotationOverlay.style.display = 'flex';
+        }
+        
+        function hideRotationPrompt() {
+            const rotationOverlay = document.getElementById('rotation-prompt');
+            if (rotationOverlay) {
+                rotationOverlay.style.display = 'none';
+            }
+        }
+        
+        // Check orientation on load and on resize/orientation change
+        handleMobileOrientation();
+        window.addEventListener('resize', handleMobileOrientation);
+        window.addEventListener('orientationchange', handleMobileOrientation);
         
         // Slide system variables
         let currentSlide = 0;
