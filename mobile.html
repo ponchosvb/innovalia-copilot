@@ -4,7 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Innovalia - Versión Móvil</title>
-    <meta name="description" content="Descubre cómo Innovalia está revolucionando el desarrollo de software con GitHub Copilot (Versión optimizada para móvil)"
+    <meta name="description" content="Descubre cómo Innovalia está revolucionando el desarrollo de software con GitHub Copilot (Versión optimizada para móvil)">
+    
+    <!-- iOS Web App Meta Tags -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Innovalia">
+    <link rel="apple-touch-icon" href="image/icon.png">
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -3015,6 +3021,15 @@
         
         // Toggle fullscreen con botón
         function toggleFullscreen() {
+            // Detectar iOS (no soporta fullscreen en web)
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            
+            if (isIOS) {
+                // En iOS, mostrar instrucciones para añadir a pantalla de inicio
+                alert('📱 iOS Tip:\n\nEn iPhone/iPad, usa el botón "Compartir" y selecciona "Añadir a pantalla de inicio" para obtener experiencia fullscreen.\n\n(Safari → Compartir → Añadir a inicio)');
+                return;
+            }
+            
             const icon = document.getElementById('fullscreen-icon');
             
             if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
@@ -3027,7 +3042,7 @@
                         console.log('Fullscreen activado');
                     }).catch(err => {
                         console.log('Error al activar fullscreen:', err);
-                        alert('No se pudo activar pantalla completa. Intenta tocar el botón nuevamente.');
+                        alert('No se pudo activar pantalla completa. Este dispositivo podría no soportarlo.');
                     });
                 } else if (elem.webkitRequestFullscreen) { /* Safari */
                     elem.webkitRequestFullscreen();
@@ -3037,6 +3052,8 @@
                     elem.msRequestFullscreen();
                     icon.classList.remove('fa-expand');
                     icon.classList.add('fa-compress');
+                } else {
+                    alert('Tu navegador no soporta pantalla completa.');
                 }
             } else {
                 // Salir de fullscreen
