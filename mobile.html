@@ -2,9 +2,9 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Innovalia - Transformando el Futuro con IA</title>
-    <meta name="description" content="Descubre cómo Innovalia está revolucionando el desarrollo de software con GitHub Copilot y tecnologías de IA">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Innovalia - Versión Móvil</title>
+    <meta name="description" content="Descubre cómo Innovalia está revolucionando el desarrollo de software con GitHub Copilot (Versión optimizada para móvil)"
     
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -1034,6 +1034,492 @@
             position: relative;
             z-index: 2;
         }
+        
+        /* ========== MOBILE OPTIMIZATIONS ========== */
+        
+        /* Reduce text sizes for mobile landscape */
+        @media (max-width: 1024px) {
+            /* Hero section adjustments */
+            .hero-slide .w-1/3 {
+                width: 90% !important;
+                margin-left: 5% !important;
+            }
+            
+            .hero-slide h2 {
+                font-size: 2.5rem !important;
+            }
+            
+            .hero-slide h3 {
+                font-size: 1.5rem !important;
+            }
+            
+            .hero-slide p {
+                font-size: 0.95rem !important;
+            }
+            
+            /* General text size reductions */
+            .text-7xl { font-size: 3rem !important; }
+            .text-6xl { font-size: 2.5rem !important; }
+            .text-5xl { font-size: 2rem !important; }
+            .text-4xl { font-size: 1.75rem !important; }
+            .text-3xl { font-size: 1.5rem !important; }
+            .text-2xl { font-size: 1.25rem !important; }
+            .text-xl { font-size: 1.1rem !important; }
+            
+            /* Reduce padding and margins */
+            .slide {
+                padding: 30px 15px !important;
+            }
+            
+            .cyber-card {
+                padding: 20px !important;
+            }
+            
+            /* Adjust grid layouts for mobile */
+            .grid-cols-2, .md\\:grid-cols-2 {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .grid-cols-3, .md\\:grid-cols-3 {
+                grid-template-columns: 1fr !important;
+            }
+            
+            .grid-cols-4, .md\\:grid-cols-4 {
+                grid-template-columns: repeat(2, 1fr) !important;
+            }
+            
+            /* Buttons smaller */
+            .cyber-btn, .case-nav-btn {
+                font-size: 0.9rem !important;
+                padding: 10px 16px !important;
+            }
+            
+            /* Credits section */
+            .credits-slide .w-1/3 {
+                width: 90% !important;
+                margin-left: 5% !important;
+            }
+            
+            .credits-slide h2 {
+                font-size: 2.5rem !important;
+            }
+            
+            /* Interactive slide adjustments */
+            #interactive-slide {
+                padding: 20px 15px !important;
+            }
+            
+            #main-title {
+                font-size: 2rem !important;
+                margin-top: 60px !important;
+            }
+            
+            #main-subtitle {
+                font-size: 1.1rem !important;
+            }
+            
+            #transformable-content {
+                min-height: auto !important;
+            }
+            
+            #transformable-content .rounded-2xl {
+                padding: 20px !important;
+            }
+            
+            #transformable-content h3 {
+                font-size: 1.5rem !important;
+            }
+            
+            #transformable-content .text-6xl {
+                font-size: 2.5rem !important;
+            }
+            
+            .transform-btn {
+                padding: 16px 24px !important;
+                font-size: 1rem !important;
+                margin-top: -50px !important;
+            }
+            
+            /* Case studies */
+            .case-nav-btn {
+                font-size: 0.8rem !important;
+                padding: 8px 12px !important;
+            }
+            
+            /* Comparison slide */
+            .clickable-panel {
+                padding: 25px !important;
+            }
+            
+            .clickable-panel h3 {
+                font-size: 1.25rem !important;
+            }
+            
+            .clickable-panel i {
+                font-size: 2.5rem !important;
+            }
+            
+            /* VS Code logo central - hide on mobile */
+            #comparison-slide .absolute.left-1\\/2 {
+                display: none !important;
+            }
+            
+            /* Modal adjustments */
+            .video-modal-content {
+                width: 95% !important;
+                padding: 15px !important;
+                margin: 5% auto !important;
+            }
+            
+            .video-modal-content h2 {
+                font-size: 1.25rem !important;
+            }
+            
+            .video-modal-content h3 {
+                font-size: 1.1rem !important;
+            }
+            
+            .video-modal-content p {
+                font-size: 0.9rem !important;
+            }
+            
+            /* QR code adjustments */
+            .hero-slide .flex.items-center.gap-6 {
+                flex-direction: column !important;
+                margin-top: 40px !important;
+                gap: 15px !important;
+            }
+            
+            .hero-slide .text-left {
+                text-align: center !important;
+                margin-top: 0 !important;
+            }
+            
+            .hero-slide .p-6 {
+                padding: 15px !important;
+                margin-left: 0 !important;
+            }
+            
+            /* Navigation dots smaller */
+            .nav-dot {
+                width: 10px !important;
+                height: 10px !important;
+            }
+            
+            /* Sources button smaller */
+            .sources-btn {
+                width: 50px !important;
+                height: 50px !important;
+                font-size: 20px !important;
+                bottom: 20px !important;
+                left: 20px !important;
+            }
+            
+            .sources-btn::after {
+                font-size: 12px !important;
+                padding: 6px 10px !important;
+            }
+            
+            /* Reduce glitch effects intensity on mobile */
+            .glitch {
+                animation: none !important;
+                text-shadow: 
+                    1px 1px #ff00ff, 
+                    -1px -1px #00ffff !important;
+            }
+            
+            /* Disable heavy animations on mobile for performance */
+            .matrix-bg {
+                opacity: 0.05 !important;
+                animation: none !important;
+            }
+            
+            .neon-border-animated::before,
+            .neon-border-animated-cyan::before {
+                animation-duration: 8s !important;
+                filter: blur(6px) brightness(1.4) !important;
+            }
+            
+            /* Tech badges smaller */
+            .credits-slide .flex-wrap span {
+                font-size: 0.75rem !important;
+                padding: 4px 8px !important;
+            }
+            
+            /* Stat boxes */
+            .stat-box {
+                padding: 15px !important;
+                margin: 8px 0 !important;
+            }
+            
+            .stat-box .text-3xl {
+                font-size: 1.75rem !important;
+            }
+            
+            /* Technical metrics grids */
+            .bg-cyan-900\\/10 .grid,
+            .bg-green-900\\/10 .grid,
+            .bg-purple-900\\/10 .grid {
+                gap: 10px !important;
+            }
+            
+            .bg-cyan-900\\/10 .text-2xl,
+            .bg-green-900\\/10 .text-2xl,
+            .bg-purple-900\\/10 .text-2xl {
+                font-size: 1.25rem !important;
+            }
+        }
+        
+        /* Extra small screens (phones in landscape) */
+        @media (max-width: 768px) {
+            .text-7xl { font-size: 2.5rem !important; }
+            .text-6xl { font-size: 2rem !important; }
+            .text-5xl { font-size: 1.75rem !important; }
+            .text-4xl { font-size: 1.5rem !important; }
+            .text-3xl { font-size: 1.25rem !important; }
+            .text-2xl { font-size: 1.1rem !important; }
+            
+            .hero-slide h2 { font-size: 2rem !important; }
+            .hero-slide h3 { font-size: 1.25rem !important; }
+            
+            #main-title { font-size: 1.75rem !important; }
+            
+            .transform-btn {
+                padding: 12px 20px !important;
+                font-size: 0.9rem !important;
+            }
+            
+            .case-nav-btn {
+                font-size: 0.7rem !important;
+                padding: 6px 10px !important;
+            }
+            
+            /* Make comparison cards full width on mobile */
+            #comparison-slide .grid-cols-2 {
+                gap: 20px !important;
+            }
+            
+            /* Adjust case study detail grids */
+            #case-0 .grid-cols-3,
+            #case-1 .grid-cols-3,
+            #case-2 .grid-cols-3 {
+                gap: 15px !important;
+            }
+        }
+        
+        /* Performance optimizations for mobile */
+        @media (max-width: 1024px) {
+            /* Reduce backdrop blur for better performance */
+            .cyber-card {
+                backdrop-filter: blur(5px) !important;
+            }
+            
+            /* Simplify transforms */
+            .cyber-card:hover {
+                transform: none !important;
+            }
+            
+            /* Disable hover effects on touch devices */
+            @media (hover: none) {
+                .cyber-card:hover::before {
+                    display: none;
+                }
+                
+                .clickable-panel:hover {
+                    transform: none;
+                }
+                
+                .cyber-btn:hover {
+                    transform: none;
+                }
+            }
+            
+            /* Ocultar zonas de navegación lateral en móvil */
+            .nav-zone-left,
+            .nav-zone-right {
+                display: none !important;
+            }
+            
+            /* ===== MODAL QR - REDUCIDO A 1/3 ===== */
+            #qrModal button.absolute {
+                font-size: 1.33rem !important; /* text-4xl / 3 */
+                top: -4rem !important;
+            }
+            
+            #qrModal img[alt="QR Code Grande"] {
+                width: 166px !important; /* 500px / 3 */
+                height: 166px !important;
+            }
+            
+            #qrModal .bg-black.p-8 {
+                padding: 2.66rem !important; /* 8 / 3 */
+            }
+            
+            #qrModal p.text-xl {
+                font-size: 0.66rem !important; /* text-xl / 3 */
+                margin-top: 2rem !important; /* 6 / 3 */
+            }
+            
+            /* ===== SLIDE 0 - TODO MIGRADO A CSS (CLASES LIMPIAS) ===== */
+            
+            /* Contenedor de la slide - ajustar al contenido */
+            .hero-slide {
+                min-height: auto !important; /* Eliminar altura mínima de pantalla */
+                height: auto !important; /* Ajustar al contenido */
+                padding: 1rem 0 !important; /* Padding vertical para espaciado */
+            }
+            
+            .hero-slide .hero-content {
+                width: 30% !important;
+                margin-left: 33px !important;
+                margin-top: 5% !important; /* Separado del top (mitad) */
+                padding-top: 1rem !important; /* Padding adicional superior (mitad) */
+            }
+            
+            /* Icono GitHub */
+            .hero-slide .fa-github {
+                font-size: 2rem !important;
+                margin-bottom: 2px !important;
+            }
+            
+            /* Título principal "Innovalia" */
+            .hero-slide h2 {
+                font-size: 1rem !important;
+                margin-bottom: 2px !important;
+            }
+            
+            /* Subtítulo "AI: Una nueva forma..." */
+            .hero-slide h3 {
+                font-size: 0.625rem !important;
+                margin-bottom: 2px !important;
+            }
+            
+            /* Contenedor del texto typing */
+            .hero-slide .typing-container {
+                height: 1rem !important;
+                margin-bottom: 0.75rem !important; /* Separación moderada del texto de abajo */
+            }
+            
+            /* Texto typing */
+            .hero-slide #typing-text {
+                font-size: 0.5rem !important;
+            }
+            
+            /* Cursor typing */
+            .hero-slide .typing-cursor {
+                width: 1px !important;
+                height: 0.4rem !important;
+            }
+            
+            /* Párrafo descriptivo */
+            .hero-slide .description-text {
+                font-size: 0.416rem !important;
+                margin-bottom: 0.5rem !important;
+                line-height: 1.25 !important;
+            }
+            
+            /* Contenedor de botones */
+            .hero-slide .buttons-container {
+                gap: 0.33rem !important;
+            }
+            
+            /* Botones */
+            .hero-slide .cyber-btn {
+                padding: 0.25rem 0.5rem !important;
+                font-size: 0.416rem !important;
+            }
+            
+            /* Sección QR y fecha */
+            .hero-slide .qr-section {
+                margin-top: 1.5rem !important; /* Separación de los botones - bajado más */
+                gap: 1rem !important;
+            }
+            
+            /* Texto de fecha */
+            .hero-slide .date-text {
+                font-size: 0.416rem !important;
+                margin-bottom: 0.16rem !important;
+            }
+            
+            .hero-slide .info-text {
+                font-size: 0.416rem !important;
+            }
+            
+            /* Caja del QR */
+            .hero-slide .qr-box {
+                padding: 0.5rem !important;
+                margin-left: 33px !important;
+                min-width: 60px !important;
+            }
+            
+            /* Imagen QR */
+            .hero-slide .qr-box img {
+                width: 40px !important;
+                height: 40px !important;
+            }
+            
+            /* Párrafo descriptivo */
+            .hero-slide p.text-base,
+            .hero-slide p.text-lg {
+                font-size: 0.416rem !important; /* ~6.5px */
+                margin-bottom: 0.66rem !important;
+                line-height: 1.25 !important;
+            }
+            
+            /* Botones */
+            .hero-slide button.cyber-btn {
+                padding: 0.25rem 0.5rem !important; /* 1/3 del padding original */
+                font-size: 0.416rem !important; /* 1/3 de text-xl */
+                margin-bottom: 0.33rem !important;
+            }
+            
+            /* Espaciado entre botones */
+            .hero-slide .flex-col.gap-4 {
+                gap: 0.33rem !important;
+            }
+            
+            /* Sección del QR y fecha */
+            .hero-slide .flex.items-center.gap-6 {
+                margin-top: 6.6% !important;
+                gap: 1rem !important;
+            }
+            
+            /* Texto de fecha */
+            .hero-slide .text-cyan-400.text-xl {
+                font-size: 0.416rem !important; /* ~6.5px */
+                margin-bottom: 0.16rem !important;
+            }
+            
+            .hero-slide .text-gray-300.text-xl {
+                font-size: 0.416rem !important; /* ~6.5px */
+            }
+            
+            /* Caja del QR */
+            .hero-slide .p-6.rounded-lg {
+                padding: 0.5rem !important; /* 1/3 de 1.5rem */
+                margin-left: 33px !important; /* 1/3 de 100px */
+                min-width: 60px !important; /* 1/3 de 180px */
+            }
+            
+            /* Imagen QR */
+            .hero-slide img[alt="QR Code"] {
+                width: 40px !important; /* 1/3 de 120px */
+                height: 40px !important;
+            }
+            
+            /* Ajustes adicionales de espaciado */
+            .hero-slide .mb-8 {
+                margin-bottom: 0.66rem !important;
+            }
+            
+            .hero-slide .mb-6 {
+                margin-bottom: 0.5rem !important;
+            }
+            
+            .hero-slide .mb-4 {
+                margin-bottom: 0.33rem !important;
+            }
+        }
     </style>
 </head>
 <body class="cyber-bg">
@@ -1059,41 +1545,41 @@
 
         <!-- Slide 0: Hero Section / Inicio -->
         <section class="slide hero-slide min-h-screen flex text-white relative">
-            <div class="w-1/3 ml-16 hero-content self-center" style="margin-top: 10%; margin-left: 100px;">
-                <div class="mb-8">
-                    <i class="fab fa-github text-6xl mb-4 text-cyan-400 neon-text"></i>
-                    <h2 class="text-4xl md:text-6xl font-bold mb-4 glitch neon-text" data-text="Innovalia">Innovalia</h2>
-                    <h3 class="text-2xl md:text-3xl font-semibold mb-6 text-cyan-300 neon-text">
+            <div class="hero-content self-center">
+                <div>
+                    <i class="fab fa-github text-cyan-400 neon-text"></i>
+                    <h2 class="font-bold glitch neon-text" data-text="Innovalia">Innovalia</h2>
+                    <h3 class="font-semibold text-cyan-300 neon-text">
                         AI: Una nueva forma de trabajar eficiente y real.
                     </h3>
-                    <div class="text-lg md:text-xl mb-8 h-12">
+                    <div class="typing-container">
                         <span id="typing-text" class="font-mono text-cyan-300"></span>
                         <span class="typing-cursor"></span>
                     </div>
                 </div>
-                <p class="text-base md:text-lg mb-8 opacity-90 text-gray-300 leading-relaxed">
+                <p class="description-text opacity-90 text-gray-300">
                     Transformando el desarrollo de software con IA para crear soluciones más eficientes, rápidas y de mayor calidad.
                 </p>
-                <div class="flex flex-col gap-4">
-                    <button onclick="goToSlide(2)" class="cyber-btn px-6 py-3 rounded-lg font-semibold transition-all pulse-btn text-xl">
+                <div class="flex flex-col buttons-container">
+                    <button onclick="goToSlide(2)" class="cyber-btn rounded-lg font-semibold transition-all pulse-btn">
                         Ver Casos de Éxito
                     </button>
-                    <button onclick="goToSlide(3)" class="cyber-btn px-6 py-3 rounded-lg font-semibold transition-all text-xl">
+                    <button onclick="goToSlide(3)" class="cyber-btn rounded-lg font-semibold transition-all">
                         IA Web vs IA Integrada
                     </button>
                 </div>
                 
                 <!-- Código QR con fecha -->
-                <div class="flex items-center gap-6" style="margin-top: 20%;">
+                <div class="flex items-center qr-section">
                     <!-- Texto informativo a la izquierda -->
-                    <div class="text-left" style="margin-top: 15%;">
-                        <p class="text-cyan-400 font-semibold text-xl mb-1 neon-text">12 de Noviembre de 2025</p>
-                        <p class="text-gray-300 text-xl">Ingeniería (FCGS-ME)</p>
+                    <div class="text-left">
+                        <p class="text-cyan-400 font-semibold neon-text date-text">12 de Noviembre de 2025</p>
+                        <p class="text-gray-300 info-text">Ingeniería (FCGS-ME)</p>
                     </div>
                     
                     <!-- Caja del QR -->
-                    <div class="p-6 rounded-lg cursor-pointer transition-transform hover:scale-105" onclick="openQRModal()" style="margin-left: 200px; box-shadow: 0 10px 25px rgba(0, 245, 255, 0.5), 0 5px 10px rgba(0, 0, 0, 0.3); border: 2px solid rgba(0, 245, 255, 0.6); min-width: 180px;">
-                        <img src="image/qr.png" alt="QR Code" width="120" height="120" style="display: block; margin: 0 auto;">
+                    <div class="qr-box rounded-lg cursor-pointer transition-transform hover:scale-105" onclick="openQRModal()" style="box-shadow: 0 10px 25px rgba(0, 245, 255, 0.5), 0 5px 10px rgba(0, 0, 0, 0.3); border: 2px solid rgba(0, 245, 255, 0.6);">
+                        <img src="image/qr.png" alt="QR Code" style="display: block; margin: 0 auto;">
                     </div>
                 </div>
             </div>
@@ -1416,7 +1902,7 @@
         </section>
 
         <!-- Slide 3: Comparación IA Web vs IDE -->
-        <section class="slide cyber-bg min-h-screen flex items-center py-16 relative">
+        <section class="slide cyber-bg min-h-screen flex items-center py-16 relative" id="comparison-slide">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" style="margin-top: 5%;">
                 <div class="text-center mb-16">
                     <h2 class="text-6xl md:text-7xl font-bold text-cyan-400 mb-6 neon-text glitch" data-text="IA Web vs IA Integrada">IA Web vs IA Integrada</h2>
@@ -1533,23 +2019,83 @@
                         </a>
                     </p>
                 </div>
+                
+                <!-- Botón para versión desktop -->
+                <div class="mt-6">
+                    <button onclick="goToDesktop()" class="cyber-btn w-full py-4 rounded-lg text-xl transition-all">
+                        <i class="fas fa-desktop mr-2"></i>
+                        Ver Versión Desktop
+                    </button>
+                </div>
             </div>
         </section>
     </div>
 
     <!-- JavaScript -->
     <script>
-        // Mobile detection and redirect to mobile-optimized version
-        (function() {
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            const isSmallScreen = window.innerWidth < 1024; // Less than typical tablet landscape
+        // ===== LANDSCAPE ORIENTATION ENFORCEMENT (MOBILE VERSION) =====
+        function handleOrientation() {
+            const isPortrait = window.innerHeight > window.innerWidth;
             
-            // Only redirect if it's a mobile device AND it's not already on the mobile page
-            if (isMobile && isSmallScreen && !window.location.pathname.includes('mobile.html')) {
-                // Redirect to mobile version
-                window.location.href = 'mobile.html';
+            if (isPortrait) {
+                showRotationPrompt();
+            } else {
+                hideRotationPrompt();
             }
-        })();
+        }
+        
+        function showRotationPrompt() {
+            let rotationOverlay = document.getElementById('rotation-prompt');
+            if (!rotationOverlay) {
+                rotationOverlay = document.createElement('div');
+                rotationOverlay.id = 'rotation-prompt';
+                rotationOverlay.style.cssText = `
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: rgba(0, 0, 0, 0.98);
+                    z-index: 999999;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    color: #00f5ff;
+                    font-family: 'Courier New', monospace;
+                    text-align: center;
+                    padding: 20px;
+                `;
+                rotationOverlay.innerHTML = `
+                    <i class="fas fa-mobile-alt" style="font-size: 100px; margin-bottom: 40px; animation: rotate 2s infinite; text-shadow: 0 0 20px #00f5ff;"></i>
+                    <h2 style="font-size: 32px; margin-bottom: 20px; text-shadow: 0 0 10px #00f5ff; font-weight: bold;">Por favor, gira tu dispositivo</h2>
+                    <p style="font-size: 20px; opacity: 0.9; max-width: 300px;">Esta presentación está optimizada para modo horizontal</p>
+                    <style>
+                        @keyframes rotate {
+                            0% { transform: rotate(0deg); }
+                            25% { transform: rotate(-90deg); }
+                            50% { transform: rotate(-90deg); }
+                            75% { transform: rotate(0deg); }
+                            100% { transform: rotate(0deg); }
+                        }
+                    </style>
+                `;
+                document.body.appendChild(rotationOverlay);
+            }
+            rotationOverlay.style.display = 'flex';
+        }
+        
+        function hideRotationPrompt() {
+            const rotationOverlay = document.getElementById('rotation-prompt');
+            if (rotationOverlay) {
+                rotationOverlay.style.display = 'none';
+            }
+        }
+        
+        // Check orientation on load and on changes
+        handleOrientation();
+        window.addEventListener('resize', handleOrientation);
+        window.addEventListener('orientationchange', handleOrientation);
         
         // Slide system variables
         let currentSlide = 0;
@@ -2359,18 +2905,30 @@
             }
         });
         
-        // Touch navigation for mobile
+        // Touch navigation for mobile - SWIPE HORIZONTAL
+        let touchStartX = 0;
+        let touchEndX = 0;
         let touchStartY = 0;
         let touchEndY = 0;
         
         document.addEventListener('touchstart', function(e) {
+            // Ignorar si toca un elemento interactivo
+            if (e.target.closest('button, a, .clickable-panel, input, select, textarea, .video-modal')) {
+                return;
+            }
+            touchStartX = e.changedTouches[0].screenX;
             touchStartY = e.changedTouches[0].screenY;
-        });
+        }, { passive: true });
         
         document.addEventListener('touchend', function(e) {
+            // Ignorar si toca un elemento interactivo
+            if (e.target.closest('button, a, .clickable-panel, input, select, textarea, .video-modal')) {
+                return;
+            }
+            touchEndX = e.changedTouches[0].screenX;
             touchEndY = e.changedTouches[0].screenY;
             handleSwipe();
-        });
+        }, { passive: true });
         
         // Window resize listener for auto-scaling
         window.addEventListener('resize', function() {
@@ -2382,13 +2940,18 @@
         });
         
         function handleSwipe() {
-            const swipeThreshold = 50;
-            const diff = touchStartY - touchEndY;
+            const swipeThreshold = 50; // Mínimo de píxeles para considerar swipe
+            const diffX = touchStartX - touchEndX;
+            const diffY = touchStartY - touchEndY;
             
-            if (Math.abs(diff) > swipeThreshold) {
-                if (diff > 0) {
+            // Solo actuar si el movimiento horizontal es mayor que el vertical
+            // Esto evita conflictos con scrolling vertical
+            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > swipeThreshold) {
+                if (diffX > 0) {
+                    // Swipe hacia la izquierda - avanzar
                     goToSlide(currentSlide + 1);
                 } else {
+                    // Swipe hacia la derecha - retroceder
                     goToSlide(currentSlide - 1);
                 }
             }
@@ -2868,6 +3431,13 @@ console.log('📅 Fecha formateada inteligentemente');`,
             });
             
             currentCase = 0;
+        }
+        
+        // ===== MOBILE-SPECIFIC FUNCTION: GO TO DESKTOP VERSION =====
+        function goToDesktop() {
+            if (confirm('¿Abrir versión desktop? Se recomienda verla en PC o tablet con pantalla grande.')) {
+                window.location.href = 'index.html';
+            }
         }
     </script>
     
