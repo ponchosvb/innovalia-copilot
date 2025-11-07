@@ -2957,6 +2957,49 @@
             }
         }
         
+        // Fullscreen functionality - activar al primer toque
+        let fullscreenRequested = false;
+        
+        function requestFullscreen() {
+            if (!fullscreenRequested) {
+                const elem = document.documentElement;
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen().catch(err => {
+                        console.log('Error al intentar fullscreen:', err);
+                    });
+                } else if (elem.webkitRequestFullscreen) { /* Safari */
+                    elem.webkitRequestFullscreen();
+                } else if (elem.msRequestFullscreen) { /* IE11 */
+                    elem.msRequestFullscreen();
+                }
+                fullscreenRequested = true;
+            }
+        }
+        
+        // Activar fullscreen en el primer toque
+        document.addEventListener('touchstart', function(e) {
+            // No activar si se toca un modal o elemento interactivo
+            if (!e.target.closest('.video-modal, button, a, input, select, textarea')) {
+                requestFullscreen();
+            }
+        }, { once: true, passive: true });
+        
+        // También permitir salir de fullscreen con doble tap
+        let lastTap = 0;
+        document.addEventListener('touchend', function(e) {
+            const currentTime = new Date().getTime();
+            const tapLength = currentTime - lastTap;
+            if (tapLength < 300 && tapLength > 0) {
+                // Doble tap detectado - toggle fullscreen
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                } else {
+                    requestFullscreen();
+                }
+            }
+            lastTap = currentTime;
+        });
+        
         // Charts initialization with cyber theme
         function initCharts() {
             Chart.defaults.color = '#00f5ff';
