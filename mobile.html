@@ -2886,6 +2886,10 @@
         // Scroll deshabilitado para navegación por click
         
         // Click navigation - Left/Right zones
+        // NAVEGACIÓN POR CLICK DESHABILITADA EN MÓVIL
+        // En móvil solo usamos swipe para navegar
+        // Este código se mantiene comentado para referencia
+        /*
         document.addEventListener('click', function(e) {
             // Ignorar clicks en botones, enlaces, elementos interactivos y modales
             if (e.target.closest('button, a, .clickable-panel, input, select, textarea, .video-modal')) {
@@ -2904,20 +2908,34 @@
                 goToSlide(currentSlide + 1);
             }
         });
+        */
         
         // Touch navigation for mobile - SWIPE HORIZONTAL
         let touchStartX = 0;
         let touchEndX = 0;
         let touchStartY = 0;
         let touchEndY = 0;
+        let fullscreenRequested = false;
+        let isTouching = false;
         
         document.addEventListener('touchstart', function(e) {
             // Ignorar si toca un elemento interactivo
             if (e.target.closest('button, a, .clickable-panel, input, select, textarea, .video-modal')) {
                 return;
             }
+            
+            // Activar fullscreen en el primer toque (no interfiere con swipe)
+            if (!fullscreenRequested) {
+                requestFullscreen();
+                fullscreenRequested = true;
+            }
+            
+            isTouching = true;
             touchStartX = e.changedTouches[0].screenX;
             touchStartY = e.changedTouches[0].screenY;
+            // Resetear valores de fin para evitar swipes fantasma
+            touchEndX = touchStartX;
+            touchEndY = touchStartY;
         }, { passive: true });
         
         document.addEventListener('touchend', function(e) {
@@ -2925,9 +2943,13 @@
             if (e.target.closest('button, a, .clickable-panel, input, select, textarea, .video-modal')) {
                 return;
             }
-            touchEndX = e.changedTouches[0].screenX;
-            touchEndY = e.changedTouches[0].screenY;
-            handleSwipe();
+            
+            if (isTouching) {
+                touchEndX = e.changedTouches[0].screenX;
+                touchEndY = e.changedTouches[0].screenY;
+                handleSwipe();
+                isTouching = false;
+            }
         }, { passive: true });
         
         // Window resize listener for auto-scaling
@@ -2940,65 +2962,51 @@
         });
         
         function handleSwipe() {
-            const swipeThreshold = 50; // Mínimo de píxeles para considerar swipe
+            const swipeThreshold = 80; // Mínimo de píxeles para considerar swipe (aumentado)
             const diffX = touchStartX - touchEndX;
             const diffY = touchStartY - touchEndY;
             
-            // Solo actuar si el movimiento horizontal es mayor que el vertical
-            // Esto evita conflictos con scrolling vertical
-            if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > swipeThreshold) {
+            const horizontalDistance = Math.abs(diffX);
+            const verticalDistance = Math.abs(diffY);
+            
+            // Solo actuar si:
+            // 1. El movimiento horizontal es mayor que el vertical
+            // 2. El movimiento horizontal supera el threshold
+            // 3. Hay un movimiento real (no es un simple tap)
+            if (horizontalDistance > verticalDistance && 
+                horizontalDistance > swipeThreshold &&
+                (horizontalDistance > 10 || verticalDistance > 10)) {
+                
                 if (diffX > 0) {
                     // Swipe hacia la izquierda - avanzar
+                    console.log('Swipe izquierda detectado:', horizontalDistance, 'px');
                     goToSlide(currentSlide + 1);
                 } else {
                     // Swipe hacia la derecha - retroceder
+                    console.log('Swipe derecha detectado:', horizontalDistance, 'px');
                     goToSlide(currentSlide - 1);
                 }
+            } else {
+                // Log para debug cuando no se considera swipe
+                if (horizontalDistance < swipeThreshold && horizontalDistance > 0) {
+                    console.log('Movimiento demasiado corto:', horizontalDistance, 'px (mínimo:', swipeThreshold, 'px)');
+                }
             }
         }
         
-        // Fullscreen functionality - activar al primer toque
-        let fullscreenRequested = false;
-        
+        // Función para activar fullscreen
         function requestFullscreen() {
-            if (!fullscreenRequested) {
-                const elem = document.documentElement;
-                if (elem.requestFullscreen) {
-                    elem.requestFullscreen().catch(err => {
-                        console.log('Error al intentar fullscreen:', err);
-                    });
-                } else if (elem.webkitRequestFullscreen) { /* Safari */
-                    elem.webkitRequestFullscreen();
-                } else if (elem.msRequestFullscreen) { /* IE11 */
-                    elem.msRequestFullscreen();
-                }
-                fullscreenRequested = true;
+            const elem = document.documentElement;
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen().catch(err => {
+                    console.log('Error al intentar fullscreen:', err);
+                });
+            } else if (elem.webkitRequestFullscreen) { /* Safari */
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) { /* IE11 */
+                elem.msRequestFullscreen();
             }
         }
-        
-        // Activar fullscreen en el primer toque
-        document.addEventListener('touchstart', function(e) {
-            // No activar si se toca un modal o elemento interactivo
-            if (!e.target.closest('.video-modal, button, a, input, select, textarea')) {
-                requestFullscreen();
-            }
-        }, { once: true, passive: true });
-        
-        // También permitir salir de fullscreen con doble tap
-        let lastTap = 0;
-        document.addEventListener('touchend', function(e) {
-            const currentTime = new Date().getTime();
-            const tapLength = currentTime - lastTap;
-            if (tapLength < 300 && tapLength > 0) {
-                // Doble tap detectado - toggle fullscreen
-                if (document.fullscreenElement) {
-                    document.exitFullscreen();
-                } else {
-                    requestFullscreen();
-                }
-            }
-            lastTap = currentTime;
-        });
         
         // Charts initialization with cyber theme
         function initCharts() {
